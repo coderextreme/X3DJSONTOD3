@@ -1,0 +1,137 @@
+[
+	{
+		"data-tag": "X3D",
+		"profile": "Immersive",
+		"version": "3.0",
+		"xmlns:xsd": "http://www.w3.org/2001/XMLSchema-instance",
+		"xsd:noNamespaceSchemaLocation": "http://www.web3d.org/specifications/x3d-3.0.xsd"
+	},
+	[
+		{
+			"data-tag": "head"
+		},
+		[
+			{
+				"data-tag": "meta",
+				"content": "ExtrusionHeart.x3d",
+				"name": "title"
+			}
+		],
+		[
+			{
+				"data-tag": "meta",
+				"content": "Simple extrusion of a valentine heart.",
+				"name": "description"
+			}
+		],
+		[
+			{
+				"data-tag": "meta",
+				"content": "MV4204 class",
+				"name": "creator"
+			}
+		],
+		[
+			{
+				"data-tag": "meta",
+				"content": "14 February 2001",
+				"name": "created"
+			}
+		],
+		[
+			{
+				"data-tag": "meta",
+				"content": "7 February 2012",
+				"name": "modified"
+			}
+		],
+		[
+			{
+				"data-tag": "meta",
+				"content": "http://www.web3d.org/x3d/content/examples/Basic/course/ExtrusionHeart.x3d",
+				"name": "identifier"
+			}
+		],
+		[
+			{
+				"data-tag": "meta",
+				"content": "X3D-Edit 3.3, https://savage.nps.edu/X3D-Edit",
+				"name": "generator"
+			}
+		],
+		[
+			{
+				"data-tag": "meta",
+				"content": "../license.html",
+				"name": "license"
+			}
+		]
+	],
+	[
+		{
+			"data-tag": "Scene"
+		},
+		[
+			{
+				"data-tag": "Viewpoint",
+				"description": "Extrusion Heart",
+				"orientation": "1 0 0 1.57",
+				"position": "0 -4 0",
+				"fieldOfView": "0.7854",
+				"jump": "true",
+				"centerOfRotation": "0 0 0",
+				"containerField": "children"
+			}
+		],
+		[
+			{
+				"data-tag": "Group",
+				"bboxCenter": "0 0 0",
+				"bboxSize": "-1 -1 -1",
+				"containerField": "children"
+			},
+			[
+				{
+					"data-tag": "Shape",
+					"containerField": "children",
+					"bboxCenter": "0 0 0",
+					"bboxSize": "-1 -1 -1"
+				},
+				[
+					{
+						"data-tag": "Extrusion",
+						"creaseAngle": "3.1400001",
+						"crossSection": "0 0.8 0.2 1 0.7 0.95 1 0.5 0.8 0 0.5 -0.3 0 -0.7 -0.5 -0.3 -0.8 0 -1 0.5 -0.7 0.95 -0.2 1 0 0.8",
+						"scale": "0.01 0.01 0.8 0.8 1 1 0.8 0.8 0.01 0.01",
+						"solid": "false",
+						"spine": "0 0 0 0 0.1 0 0 0.5 0 0 0.9 0 0 1 0",
+						"beginCap": "true",
+						"ccw": "true",
+						"convex": "true",
+						"endCap": "true",
+						"orientation": "0 0 1 0",
+						"containerField": "geometry"
+					}
+				],
+				[
+					{
+						"data-tag": "Appearance",
+						"containerField": "appearance"
+					},
+					[
+						{
+							"data-tag": "Material",
+							"diffuseColor": "0.8 0.3 0.3",
+							"ambientIntensity": "0.2",
+							"emissiveColor": "0 0 0",
+							"shininess": "0.2",
+							"specularColor": "0 0 0",
+							"transparency": "0",
+							"containerField": "material"
+						}
+					]
+				]
+			]
+		]
+	]
+]

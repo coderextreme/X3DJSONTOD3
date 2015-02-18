@@ -1,0 +1,406 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<!-- ========================================================= -->
+<!-- embedded X3D scene appears after html/head/script and style entries -->
+<!-- ========================================================= -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>ExtrusionHeart.x3d (X3dToX3dom)</title>
+      <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge"/>
+      <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+      <meta name="generator" content="http://www.web3d.org/x3d/stylesheets/X3dToX3dom.xslt"/>
+      <meta name="warning"
+            content="Webfonts must be loaded prior to using Text node... see http://x3dom.org/x3dom/example/x3dom_text.html"/>
+      <link rel="stylesheet" type="text/css"
+            href="http://www.x3dom.org/download/dev/x3dom.css"/>
+      <script type="text/javascript" src="http://www.x3dom.org/download/dev/x3dom-full.js"/>
+      <!-- X3DOM needs Web Fonts when an X3D Text node is included --><!-- adapted from http://x3dom.org/x3dom/example/x3dom_text.html and http://web.mit.edu/jmorzins/www/fonts.html -->
+<style type="text/css">
+/* ============================================================================= */
+@font-face {
+  font-family: 'SERIF'; /* default original */
+  font-style: normal;
+  font-weight: 700;
+  src: local('Roman'), url('Roman.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'SERIF'; /* default alternate */
+  font-style: normal;
+  font-weight: 700;
+  src: local('Times New Roman'), local('TimesNewRoman'), url('Times New Roman.ttf') format('truetype');
+}
+/* ============================================================================= */
+@font-face {
+  font-family: 'SANS'; /* default original */
+  font-style: normal;
+  font-weight: 400;
+  src: local('Arial'), url('Arial.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'SANS'; /* default alternate */
+  font-style: normal;
+  font-weight: 400;
+  src: local('Helvetica'), url('Helvetica.ttf') format('truetype');
+}
+/* ============================================================================= */
+@font-face {
+  font-family: 'TYPEWRITER'; /* default original */
+  font-style: normal;
+  font-weight: 900;
+  src: local('Courier'), url('Courier.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'TYPEWRITER'; /* default alternate */
+  font-style: normal;
+  font-weight: 900;
+  src: local('Courier New'), url('Courier New.ttf') format('truetype');
+}
+/* ============================================================================= */
+</style>
+      <style type="text/css" media="screen, print">
+.webfont { font-size:200%; font-family:'TYPEWRITER'; color:green;} /* Conversion TODO font families: SANS SERIF TYPEWRITER */
+</style>
+      <!-- Button zoom adapted from http://x3dom.org/docs/dev/tutorial/styling.html -->
+<style type="text/css">
+
+html {width:100%;height:100%;margin:0;padding:0;}
+body {margin:0;padding:10px;width:100%;height:100%;}
+
+#rootX3dElement {
+    height: 450px; /* defaults, 16x9 aspect ratio */
+    width:  800px;
+    border: none;
+    display: block;
+    position:relative;
+    background:#000;
+}
+
+#toggleZoomButton {
+    position: absolute;
+    float: left;
+    z-index: 1;
+    top: 0px;
+    left: 0px;
+    width: 10em;
+    height: 2em;
+    border: none;
+    background-color: #202021;
+    color: #ccc;
+}
+
+#toggleZoomButton:hover {
+    background-color:blue;
+}
+</style>
+      <!-- ConversionConversion TODO: showStatistics, since showDebugLog parameters do not appear to be resettable during runtime -->
+<!-- http://x3dom.org/docs/dev/api.html and http://x3dom.org/docs/dev/configuration.html -->
+<script type="text/javascript">
+var zoomed = false;
+var showStatistics = false;
+var showDebugLog   = true;
+
+function toggleZoom(button) {
+
+        var new_height;
+        var new_width;
+        var x3d_element;
+        
+        htmlBody       = document.getElementById('htmlBody');
+        htmlPageHeader = document.getElementById('htmlPageHeader');
+        htmlPageFooter = document.getElementById('htmlPageFooter');
+        x3d_element    = document.getElementById('rootX3dElement');
+
+        if (zoomed) {
+                new_height = "450px"; /* defaults, 16x9 aspect ratio */
+                new_width  = "800px";
+                button.innerHTML = "Zoom";
+                htmlPageHeader.style.display = "table-row";
+                htmlPageFooter.style.display = "table-row";
+                document.getElementById('checkBoxCell').style="text-align:right";
+                htmlBody.style.padding = '10px';
+                x3d_element.showStat = showStatistics;
+                x3d_element.showLog  = showDebugLog;
+        } else {
+                new_height = "100%";
+                new_width  = "100%";
+                button.innerHTML = "Unzoom";
+                htmlPageHeader.style.display = "none";
+                htmlPageFooter.style.display = "none";
+                htmlBody.style.padding = '0';
+                x3d_element.showStat = false;
+                x3d_element.showLog  = false;
+        }
+
+        zoomed = !zoomed;
+
+        x3d_element.style.height = new_height;
+        x3d_element.style.width  = new_width;
+}
+    // Browser information table adapted from http://www.w3schools.com/js/js_window_navigator.asp
+    
+    document.addEventListener("DOMContentLoaded", function()
+    {
+        document.getElementById("browserCodeName"      ).innerHTML = navigator.appCodeName;
+        document.getElementById("browserAppName"       ).innerHTML = navigator.appName;
+        document.getElementById("browserAppVersion"    ).innerHTML = navigator.appVersion;
+        document.getElementById("browserCookieEnabled" ).innerHTML = navigator.cookieEnabled;
+        document.getElementById("browserPlatform"      ).innerHTML = navigator.platform;
+        document.getElementById("browserUserAgent"     ).innerHTML = navigator.userAgent;
+    if (navigator.systemLanguage)
+        document.getElementById("browserSystemLanguage").innerHTML = navigator.systemLanguage;
+    else
+        document.getElementById("browserSystemLanguage").innerHTML = navigator.language;
+    }, false);
+
+function toggleOverlayStatistics()
+{
+        x3d_element = document.getElementById('rootX3dElement'); 
+        showStatistics = !showStatistics;
+        x3d_element.runtime.statistics(showStatistics);
+}
+function toggleShowDebugLog()
+{
+        x3d_element = document.getElementById('rootX3dElement'); 
+        showDebugLog  = !showDebugLog;
+        x3d_element.runtime.debug(showDebugLog);
+}
+</script>
+   </head>
+   <body id="htmlBody">
+      <table style="width:96%">
+         <tr id="htmlPageHeader">
+            <td style="text-align:left;">
+               <h2>ExtrusionHeart.x3d</h2>
+            </td>
+            <td id="checkBoxCell" style="text-align:right"> (<a href="http://www.web3d.org/x3d/content/examples/Basic/course/ExtrusionHeart.x3d">.x3d scene</a>, 
+<a href="#details">details</a>, 
+<input id="checkBoxOverlayStatistics" type="checkbox" value="Overlay statistics"
+                      checked="checked"
+                      onclick="toggleOverlayStatistics();"/>statistics, 
+<input id="checkBoxShowDebugLog" type="checkbox" value="Debugger log"
+                      checked="checked"
+                      onclick="toggleShowDebugLog();"/>debug log)</td>
+         </tr>
+         <tr>
+            <td colspan="2">
+               <p>
+                  <span class="webfont">Simple extrusion of a valentine heart.</span>
+               </p>
+            </td>
+         </tr>
+      </table>
+      <div id="heart">
+<!-- ================================ -->
+<!-- embedded X3D scene appears here: -->
+<script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+<script type='text/javascript'>d3.select('body')
+.append("X3D")
+	.attr("profile", "Immersive")
+	.attr("version", "3.0")
+	.attr('id', 'rootX3dElement')
+	.attr("xsd:noNamespaceSchemaLocation", "http://www.web3d.org/specifications/x3d-3.0.xsd")
+	.append("head")
+		.append("meta")
+			.attr("content", "ExtrusionHeart.x3d")
+			.attr("name", "title")
+		.select(function() { return this.parentNode; })
+		.append("meta")
+			.attr("content", "Simple extrusion of a valentine heart.")
+			.attr("name", "description")
+		.select(function() { return this.parentNode; })
+		.append("meta")
+			.attr("content", "MV4204 class")
+			.attr("name", "creator")
+		.select(function() { return this.parentNode; })
+		.append("meta")
+			.attr("content", "14 February 2001")
+			.attr("name", "created")
+		.select(function() { return this.parentNode; })
+		.append("meta")
+			.attr("content", "7 February 2012")
+			.attr("name", "modified")
+		.select(function() { return this.parentNode; })
+		.append("meta")
+			.attr("content", "http://www.web3d.org/x3d/content/examples/Basic/course/ExtrusionHeart.x3d")
+			.attr("name", "identifier")
+		.select(function() { return this.parentNode; })
+		.append("meta")
+			.attr("content", "X3D-Edit 3.3, https://savage.nps.edu/X3D-Edit")
+			.attr("name", "generator")
+		.select(function() { return this.parentNode; })
+		.append("meta")
+			.attr("content", "../license.html")
+			.attr("name", "license")
+		.select(function() { return this.parentNode; })
+	.select(function() { return this.parentNode; })
+	.append("Scene")
+		.append("Viewpoint")
+			.attr("description", "Extrusion Heart")
+			.attr("orientation", "1 0 0 1.57")
+			.attr("position", "0 -4 0")
+			.attr("fieldOfView", "0.7854")
+			.attr("jump", "true")
+			.attr("centerOfRotation", "0 0 0")
+			.attr("containerField", "children")
+		.select(function() { return this.parentNode; })
+		.append("Group")
+			.attr("bboxCenter", "0 0 0")
+			.attr("bboxSize", "-1 -1 -1")
+			.attr("containerField", "children")
+			.append("Shape")
+				.attr("containerField", "children")
+				.attr("bboxCenter", "0 0 0")
+				.attr("bboxSize", "-1 -1 -1")
+				.append("Extrusion")
+					.attr("creaseAngle", "3.1400001")
+					.attr("crossSection", "0 0.8 0.2 1 0.7 0.95 1 0.5 0.8 0 0.5 -0.3 0 -0.7 -0.5 -0.3 -0.8 0 -1 0.5 -0.7 0.95 -0.2 1 0 0.8")
+					.attr("scale", "0.01 0.01 0.8 0.8 1 1 0.8 0.8 0.01 0.01")
+					.attr("solid", "false")
+					.attr("spine", "0 0 0 0 0.1 0 0 0.5 0 0 0.9 0 0 1 0")
+					.attr("beginCap", "true")
+					.attr("ccw", "true")
+					.attr("convex", "true")
+					.attr("endCap", "true")
+					.attr("orientation", "0 0 1 0")
+					.attr("containerField", "geometry")
+				.select(function() { return this.parentNode; })
+				.append("Appearance")
+					.attr("containerField", "appearance")
+					.append("Material")
+						.attr("diffuseColor", "0.8 0.3 0.3")
+						.attr("ambientIntensity", "0.2")
+						.attr("emissiveColor", "0 0 0")
+						.attr("shininess", "0.2")
+						.attr("specularColor", "0 0 0")
+						.attr("transparency", "0")
+						.attr("containerField", "material")
+					.select(function() { return this.parentNode; })
+				.select(function() { return this.parentNode; })
+			.select(function() { return this.parentNode; })
+		.select(function() { return this.parentNode; })
+	.select(function() { return this.parentNode; })
+;
+</script>
+
+<!-- ================================ -->
+</div>
+      <p style="clear:both;">&nbsp;</p>
+      <div id="details">
+         <table style="margin: auto; margin-top:20px;margin-left:5%;">
+            <tr>
+               <th style="text-align:right;">X3D&nbsp;Scene </th>
+               <th style="text-align:left;"> Metadata </th>
+            </tr>
+            <tr>
+               <td style="text-align:right;color:green">title</td>
+               <td>
+                  <a href="ExtrusionHeart.x3d">ExtrusionHeart.x3d</a>
+               </td>
+            </tr>
+            <tr>
+               <td style="text-align:right;color:green">description</td>
+               <td>Simple extrusion of a valentine heart.</td>
+            </tr>
+            <tr>
+               <td style="text-align:right;color:green">creator</td>
+               <td>MV4204 class</td>
+            </tr>
+            <tr>
+               <td style="text-align:right;color:green">created</td>
+               <td>14 February 2001</td>
+            </tr>
+            <tr>
+               <td style="text-align:right;color:green">modified</td>
+               <td>7 February 2012</td>
+            </tr>
+            <tr>
+               <td style="text-align:right;color:green">identifier</td>
+               <td>
+                  <a href="http://www.web3d.org/x3d/content/examples/Basic/course/ExtrusionHeart.x3d">http://www.web3d.org/x3d/content/examples/Basic/course/ExtrusionHeart.x3d</a>
+               </td>
+            </tr>
+            <tr>
+               <td style="text-align:right;color:green">generator</td>
+               <td>X3D-Edit 3.3, <a href="https://savage.nps.edu/X3D-Edit">https://savage.nps.edu/X3D-Edit</a>
+               </td>
+            </tr>
+            <tr>
+               <td style="text-align:right;color:green">license</td>
+               <td>
+                  <a href="../license.html">../license.html</a>
+               </td>
+            </tr>
+            <tr>
+               <td colspan="2">&nbsp;</td>
+            </tr>
+            <tr>
+               <th style="text-align:right;"> HTML&nbsp;Browser </th>
+               <th style="text-align:left;"> Information </th>
+            </tr>
+            <tr>
+               <td style="text-align:right;"> Browser code name: </td>
+               <td id="browserCodeName"/>
+            </tr>
+            <tr>
+               <td style="text-align:right;"> Browser application name: </td>
+               <td id="browserAppName"/>
+            </tr>
+            <tr>
+               <td style="text-align:right;"> Browser version: </td>
+               <td id="browserAppVersion"/>
+            </tr>
+            <tr>
+               <td style="text-align:right;"> Cookies enabled: </td>
+               <td id="browserCookieEnabled"/>
+            </tr>
+            <tr>
+               <td style="text-align:right;"> Platform: </td>
+               <td id="browserPlatform"/>
+            </tr>
+            <tr>
+               <td style="text-align:right;"> User Agent: </td>
+               <td id="browserUserAgent"/>
+            </tr>
+            <tr>
+               <td style="text-align:right;"> System language: </td>
+               <td id="browserSystemLanguage"/>
+            </tr>
+         </table>
+      </div>
+      <div id="htmlPageFooter">
+         <table border="1"
+                style="float:left; margin:auto; margin-top:20px; border:1px solid black;">
+            <caption style="text-align:center;background-color:silver; padding:4px;">
+               <b>X3DOM node coverage</b>
+            </caption>
+            <tr style="text-align:center; padding:4px; border:1px solid black;">
+               <th> Supported nodes found </th>
+               <th> Unsupported nodes found </th>
+               <th> Partial support</th>
+            </tr>
+            <tr style="border:1px solid black;">
+               <td style="text-align:left;vertical-align:text-top;padding:4px;">
+                  <span style="color:green;">Appearance<br/>Extrusion<br/>Group<br/>Material<br/>Shape<br/>Viewpoint<br/>
+                  </span> 
+               </td>
+               <td style="text-align:left;vertical-align:text-top;padding:4px;">
+                  <span style="color:red;"/> 
+               </td>
+               <td style="text-align:left;vertical-align:text-top;padding:4px;"> </td>
+            </tr>
+            <tr style="text-align:center; background-color:silver; padding:6px;">
+               <td colspan="3">References: <a href="http://www.x3dom.org/check" onclick="target='_blank';">X3DOM browser check</a>,
+                                <a href="http://www.x3dom.org" onclick="target='_blank';">X3DOM home</a>,
+                                <a href="http://doc.x3dom.org" onclick="target='_blank';">X3DOM documentation</a>,
+                                <a href="http://x3dom.org/x3dom/test/functional/dumpNodeTypeTree.html"
+                     onclick="target='_blank';">X3DOM list of supported nodes</a>,
+                                and
+                                <a href="http://www.web3d.org/x3d/content/examples/X3dResources.html"
+                     onclick="target='_blank';">X3D Resources</a>
+               </td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>
