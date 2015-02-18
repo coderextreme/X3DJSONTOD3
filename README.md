@@ -1,7 +1,8 @@
 Requirements:
 	Node.js 0.10
 	Java SDK 8 (or lower, not sure)
-	GSON 2.3.1 JAR (please fetch your own and place in this folder under the name gson-2.3.1.jar, sorry, I can't send zipped jars through gmail)
+	GSON 2.3.1 JAR
+		 please fetch your own and place in this folder under the name gson-2.3.1.jar, sorry, I can't send zipped jars through gmail.  I have included one on github, but it's use is subject to the BSD license and Apache license included.  GSON is available here: https://code.google.com/p/google-gson/
 	Set up the environmental variable JAVA_HOME to your Java SDK folder
 	like:
 	export JAVA_HOME /Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home
