@@ -54,17 +54,6 @@ class SaxHandler extends DefaultHandler {
 		e.printStackTrace();
 	}
     }
-
-/*
-    private String currentElement() {
-        return this.elementStack.peek();
-    }
-
-    private String currentElementParent() {
-        if(this.elementStack.size() < 2) return null;
-        return this.elementStack.get(this.elementStack.size()-2);
-    }
-*/
 }    
 
 public class ParseXML {
