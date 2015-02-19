@@ -194,95 +194,94 @@ function toggleShowDebugLog()
 <!-- ================================ -->
 <!-- embedded X3D scene appears here: -->
 <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
-<script type='text/javascript'>d3.select('body')
-.append("X3D")
-	.attr("profile", "Immersive")
-	.attr("version", "3.0")
-	.attr('id', 'rootX3dElement')
-	.attr("xsd:noNamespaceSchemaLocation", "http://www.web3d.org/specifications/x3d-3.0.xsd")
-	.append("head")
-		.append("meta")
-			.attr("content", "ExtrusionHeart.x3d")
-			.attr("name", "title")
-		.select(function() { return this.parentNode; })
-		.append("meta")
-			.attr("content", "Simple extrusion of a valentine heart.")
-			.attr("name", "description")
-		.select(function() { return this.parentNode; })
-		.append("meta")
-			.attr("content", "MV4204 class")
-			.attr("name", "creator")
-		.select(function() { return this.parentNode; })
-		.append("meta")
-			.attr("content", "14 February 2001")
-			.attr("name", "created")
-		.select(function() { return this.parentNode; })
-		.append("meta")
-			.attr("content", "7 February 2012")
-			.attr("name", "modified")
-		.select(function() { return this.parentNode; })
-		.append("meta")
-			.attr("content", "http://www.web3d.org/x3d/content/examples/Basic/course/ExtrusionHeart.x3d")
-			.attr("name", "identifier")
-		.select(function() { return this.parentNode; })
-		.append("meta")
-			.attr("content", "X3D-Edit 3.3, https://savage.nps.edu/X3D-Edit")
-			.attr("name", "generator")
-		.select(function() { return this.parentNode; })
-		.append("meta")
-			.attr("content", "../license.html")
-			.attr("name", "license")
-		.select(function() { return this.parentNode; })
-	.select(function() { return this.parentNode; })
-	.append("Scene")
-		.append("Viewpoint")
-			.attr("description", "Extrusion Heart")
-			.attr("orientation", "1 0 0 1.57")
-			.attr("position", "0 -4 0")
-			.attr("fieldOfView", "0.7854")
-			.attr("jump", "true")
-			.attr("centerOfRotation", "0 0 0")
-			.attr("containerField", "children")
-		.select(function() { return this.parentNode; })
-		.append("Group")
-			.attr("bboxCenter", "0 0 0")
-			.attr("bboxSize", "-1 -1 -1")
-			.attr("containerField", "children")
-			.append("Shape")
-				.attr("containerField", "children")
-				.attr("bboxCenter", "0 0 0")
-				.attr("bboxSize", "-1 -1 -1")
-				.append("Extrusion")
-					.attr("creaseAngle", "3.1400001")
-					.attr("crossSection", "0 0.8 0.2 1 0.7 0.95 1 0.5 0.8 0 0.5 -0.3 0 -0.7 -0.5 -0.3 -0.8 0 -1 0.5 -0.7 0.95 -0.2 1 0 0.8")
-					.attr("scale", "0.01 0.01 0.8 0.8 1 1 0.8 0.8 0.01 0.01")
-					.attr("solid", "false")
-					.attr("spine", "0 0 0 0 0.1 0 0 0.5 0 0 0.9 0 0 1 0")
-					.attr("beginCap", "true")
-					.attr("ccw", "true")
-					.attr("convex", "true")
-					.attr("endCap", "true")
-					.attr("orientation", "0 0 1 0")
-					.attr("containerField", "geometry")
-				.select(function() { return this.parentNode; })
-				.append("Appearance")
-					.attr("containerField", "appearance")
-					.append("Material")
-						.attr("diffuseColor", "0.8 0.3 0.3")
-						.attr("ambientIntensity", "0.2")
-						.attr("emissiveColor", "0 0 0")
-						.attr("shininess", "0.2")
-						.attr("specularColor", "0 0 0")
-						.attr("transparency", "0")
-						.attr("containerField", "material")
-					.select(function() { return this.parentNode; })
-				.select(function() { return this.parentNode; })
-			.select(function() { return this.parentNode; })
-		.select(function() { return this.parentNode; })
-	.select(function() { return this.parentNode; })
+<script type='text/javascript'>var element = d3.select('body')
+element = element.append('X3D');
+	element.attr('profile', 'Immersive');
+	element.attr('version', '3.0');
+	element.attr('id', 'rootX3dElement');
+	element.attr('xsd:noNamespaceSchemaLocation', 'http://www.web3d.org/specifications/x3d-3.0.xsd');
+	element = element.append('head');
+		element = element.append('meta');
+			element.attr('content', 'ExtrusionHeart.x3d');
+			element.attr('name', 'title');
+		element = element.select(function () { return this.parentNode;});
+		element = element.append('meta');
+			element.attr('content', 'Simple extrusion of a valentine heart.');
+			element.attr('name', 'description');
+		element = element.select(function () { return this.parentNode;});
+		element = element.append('meta');
+			element.attr('content', 'MV4204 class');
+			element.attr('name', 'creator');
+		element = element.select(function () { return this.parentNode;});
+		element = element.append('meta');
+			element.attr('content', '14 February 2001');
+			element.attr('name', 'created');
+		element = element.select(function () { return this.parentNode;});
+		element = element.append('meta');
+			element.attr('content', '7 February 2012');
+			element.attr('name', 'modified');
+		element = element.select(function () { return this.parentNode;});
+		element = element.append('meta');
+			element.attr('content', 'http://www.web3d.org/x3d/content/examples/Basic/course/ExtrusionHeart.x3d');
+			element.attr('name', 'identifier');
+		element = element.select(function () { return this.parentNode;});
+		element = element.append('meta');
+			element.attr('content', 'X3D-Edit 3.3, https://savage.nps.edu/X3D-Edit');
+			element.attr('name', 'generator');
+		element = element.select(function () { return this.parentNode;});
+		element = element.append('meta');
+			element.attr('content', '../license.html');
+			element.attr('name', 'license');
+		element = element.select(function () { return this.parentNode;});
+	element = element.select(function () { return this.parentNode;});
+	element = element.append('Scene');
+		element = element.append('Viewpoint');
+			element.attr('description', 'Extrusion Heart');
+			element.attr('orientation', '1 0 0 1.57');
+			element.attr('position', '0 -4 0');
+			element.attr('fieldOfView', '0.7854');
+			element.attr('jump', 'true');
+			element.attr('centerOfRotation', '0 0 0');
+			element.attr('containerField', 'children');
+		element = element.select(function () { return this.parentNode;});
+		element = element.append('Group');
+			element.attr('bboxCenter', '0 0 0');
+			element.attr('bboxSize', '-1 -1 -1');
+			element.attr('containerField', 'children');
+			element = element.append('Shape');
+				element.attr('containerField', 'children');
+				element.attr('bboxCenter', '0 0 0');
+				element.attr('bboxSize', '-1 -1 -1');
+				element = element.append('Extrusion');
+					element.attr('creaseAngle', '3.1400001');
+					element.attr('crossSection', '0 0.8 0.2 1 0.7 0.95 1 0.5 0.8 0 0.5 -0.3 0 -0.7 -0.5 -0.3 -0.8 0 -1 0.5 -0.7 0.95 -0.2 1 0 0.8');
+					element.attr('scale', '0.01 0.01 0.8 0.8 1 1 0.8 0.8 0.01 0.01');
+					element.attr('solid', 'false');
+					element.attr('spine', '0 0 0 0 0.1 0 0 0.5 0 0 0.9 0 0 1 0');
+					element.attr('beginCap', 'true');
+					element.attr('ccw', 'true');
+					element.attr('convex', 'true');
+					element.attr('endCap', 'true');
+					element.attr('orientation', '0 0 1 0');
+					element.attr('containerField', 'geometry');
+				element = element.select(function () { return this.parentNode;});
+				element = element.append('Appearance');
+					element.attr('containerField', 'appearance');
+					element = element.append('Material');
+						element.attr('diffuseColor', '0.8 0.3 0.3');
+						element.attr('ambientIntensity', '0.2');
+						element.attr('emissiveColor', '0 0 0');
+						element.attr('shininess', '0.2');
+						element.attr('specularColor', '0 0 0');
+						element.attr('transparency', '0');
+						element.attr('containerField', 'material');
+					element = element.select(function () { return this.parentNode;});
+				element = element.select(function () { return this.parentNode;});
+			element = element.select(function () { return this.parentNode;});
+		element = element.select(function () { return this.parentNode;});
+	element = element.select(function () { return this.parentNode;});
 ;
 </script>
-
 <!-- ================================ -->
 </div>
       <p style="clear:both;">&nbsp;</p>

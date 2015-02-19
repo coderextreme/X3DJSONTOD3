@@ -22,7 +22,7 @@ class SaxHandler extends DefaultHandler {
 	try {
 		writer.beginArray();
 			writer.beginObject();
-			writer.name("data-tag").value(qName);
+			writer.name("jsontag").value(qName);
 			if (attributes.getLength() > 0) {
 				for (int at = 0; at < attributes.getLength(); at++) {
 					writer.name(attributes.getQName(at)).value(attributes.getValue(at));
