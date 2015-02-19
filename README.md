@@ -24,6 +24,8 @@ If you `./run.sh geoComponent.x3d` in the folder created, it will produce
 	* geoComponent.js, converted from geoComponent.json
 	* geoComponent.json, converted from geoComponent.x3d
 
+`run.bat` should do both of the above, but there are no guarantees
+
 
 Additional files
 	* ExtrusionHeart.x3d X3D example file
