@@ -6,5 +6,5 @@ ${JAVA_HOME}/bin/java -cp .:gson-2.3.1.jar ParseXML < "$FILE".x3d > "$FILE".json
 rm *.class
 node JSON2D3.js < "$FILE".json > "$FILE".js
 cd ..
-tar -czf X3DJSONTOD3.tar.gz X3DJSONTOD3/{ExtrusionHeart.x3d,ParseXML.java,README.md,X3DJSONTOD3.js,"$FILE".js,"$FILE".json,heart.xhtml,run.bat,run.sh,gson-2.3.1.jar}
+tar -czf X3DJSONTOD3.tar.gz X3DJSONTOD3
 zip -r X3DJSONTOD3.zip X3DJSONTOD3/*
