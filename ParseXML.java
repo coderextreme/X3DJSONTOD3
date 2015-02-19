@@ -10,8 +10,6 @@ import com.google.gson.stream.JsonWriter;
 class SaxHandler extends DefaultHandler {
 
     private JsonWriter writer = null;
-    private int elementDepth = -1;
-    private int elementKeep = -1;
 
     public SaxHandler(JsonWriter writer) {
 	this.writer = writer;
@@ -21,14 +19,12 @@ class SaxHandler extends DefaultHandler {
         String qName, Attributes attributes) throws SAXException {
 	try {
 		writer.beginArray();
-			writer.beginObject();
-			writer.name("jsontag").value(qName);
-			if (attributes.getLength() > 0) {
-				for (int at = 0; at < attributes.getLength(); at++) {
-					writer.name(attributes.getQName(at)).value(attributes.getValue(at));
-				}
-			}
-			writer.endObject();
+		writer.beginObject();
+		writer.name("jsontag").value(qName);
+		for (int at = 0; at < attributes.getLength(); at++) {
+			writer.name(attributes.getQName(at)).value(attributes.getValue(at));
+		}
+		writer.endObject();
 	} catch (IOException e) {
 		e.printStackTrace();
 	}

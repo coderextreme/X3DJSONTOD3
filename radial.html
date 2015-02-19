@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
+<html>
+<head>
+<meta charset="utf-8" />
 <style>
 
 .node circle {
@@ -19,6 +21,7 @@
 }
 
 </style>
+</head>
 <body>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script>
@@ -38,7 +41,7 @@ var svg = d3.select("body").append("svg")
   .append("g")
     .attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
 
-d3.json("geoComponent.json", function(error, root) {
+d3.json("radial.json", function(error, root) {
   var nodes = tree.nodes(root),
       links = tree.links(nodes);
 
@@ -59,12 +62,13 @@ d3.json("geoComponent.json", function(error, root) {
 
   node.append("text")
       .attr("dy", ".31em")
-      .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
-      .attr("transform", function(d) { return d.x < 180 ? "translate(8)" : "rotate(180)translate(-8)"; })
+      .attr("text-anchor", function(d) { return d.x &lt; 180 ? "start" : "end"; })
+      .attr("transform", function(d) { return d.x &lt; 180 ? "translate(8)" : "rotate(180)translate(-8)"; })
       .text(function(d) { return d.name; });
 });
 
 d3.select(self.frameElement).style("height", diameter - 150 + "px");
 
 </script>
-
+</body>
+</html>

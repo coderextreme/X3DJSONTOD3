@@ -18,11 +18,11 @@ class D3InputSaxHandler extends DefaultHandler {
     public void startElement(String uri, String localName,
         String qName, Attributes attributes) throws SAXException {
 	try {
-			writer.beginObject();
-			writer.name("name").value(qName);
-			writer.name("size").value("1");
-			writer.name("children");
-			writer.beginArray();
+		writer.beginObject();
+		writer.name("name").value(qName);
+		writer.name("size").value("1");
+		writer.name("children");
+		writer.beginArray();
 	} catch (IOException e) {
 		e.printStackTrace();
 	}
