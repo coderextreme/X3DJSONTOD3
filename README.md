@@ -36,7 +36,6 @@ Additional files
 	* geofiles web files for x3dom_geoComponent2.html
 	* gson-2.3.1.jar GSON library files
 	* heart.xhtml XHTML file for heart
-	* media place for CSS files
 	* run.bat is untested.  Testers are welcome
 	* run.sh main build script
 	* x3dom_geoComponent2.html  HTML file for component example

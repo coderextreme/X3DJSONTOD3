@@ -1,8 +1,8 @@
 #!/bin/bash
-${JAVA_HOME}/bin/javac -cp .:gson-2.3.1.jar ParseXML.java
-# ${JAVA_HOME}/bin/java -cp .:gson-2.3.1.jar ParseXML < HAnimPrototypes.x3d > hanim.json
-FILE=`basename "$1" .x3d`
-${JAVA_HOME}/bin/java -cp .:gson-2.3.1.jar ParseXML < "$FILE".x3d > "$FILE".json
+${JAVA_HOME}/bin/javac -cp .:gson-2.3.1.jar ParseXML.java D3Input.java
+FILE="$1"
+${JAVA_HOME}/bin/java -cp .:gson-2.3.1.jar D3Input < "$FILE" > "$FILE"_skel.json
+${JAVA_HOME}/bin/java -cp .:gson-2.3.1.jar ParseXML < "$FILE" > "$FILE".json
 rm *.class
 node JSON2D3.js < "$FILE".json > "$FILE".js
 cd ..
