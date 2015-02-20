@@ -10,6 +10,7 @@ import com.google.gson.stream.JsonWriter;
 class SaxHandler extends DefaultHandler {
 
     private JsonWriter writer = null;
+    StringBuffer buf = null;
 
     public SaxHandler(JsonWriter writer) {
 	this.writer = writer;
@@ -33,6 +34,10 @@ class SaxHandler extends DefaultHandler {
     public void endElement(String uri, String localName,
         String qName) throws SAXException {
 	try {
+		if (buf != null) {
+			writer.value(buf.toString());
+			buf = null;
+		}
 		writer.endArray();
 	} catch (IOException e) {
 		e.printStackTrace();
@@ -44,11 +49,10 @@ class SaxHandler extends DefaultHandler {
 
 	String value = new String(ch, start, length).trim();
         if(value.length() == 0) return; // ignore white space
-	try {
-		writer.value(value);
-	} catch (IOException e) {
-		e.printStackTrace();
+	if (buf == null) {
+		buf = new StringBuffer();
 	}
+	buf.append(value);
     }
 }    
 

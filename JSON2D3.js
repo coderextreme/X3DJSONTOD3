@@ -7,10 +7,12 @@ process.stdin.on('data', function(buf) { content += buf.toString(); });
 
 function loadJSON(prototypes, indent) {
 	var p;
+	var tag;
 	for (p in prototypes) {
 		if (p == 0) {
 			var attr;
 			console.log(indent+"element = element.append('"+prototypes[p]["jsontag"]+"');");
+			tag = prototypes[p]["jsontag"];
 			for (attr in prototypes[p]) {
 				if (attr !== "jsontag" && attr !== "xmlns:xsd") {
 					console.log(indent+"\telement.attr('"+attr+"', '"+prototypes[p][attr]+"');");
@@ -21,8 +23,11 @@ function loadJSON(prototypes, indent) {
 		} else {
 			if (typeof prototypes[p] === 'object') {
 				loadJSON(prototypes[p], indent+"\t");
-			} else if (typeof prototypes[p] === 'string') {
-				console.log(indent+"\telement.text('"+prototypes[p]+"');");
+			} else if (typeof prototypes[p] === 'string'
+				&& tag !== 'style'
+				&& tag !== 'script'
+				) {
+				console.log(indent+"\telement.text('"+replace(prototypes[p])+"');");
 			}
 			console.log(indent+"\telement = element.select(function () { return this.parentNode;});");
 		}
@@ -39,6 +44,7 @@ d3.json('ExtrusionHeart.json', function(error, json) {
 
 process.stdin.on('end', function() {
 	var prototypes = JSON.parse(content);
+        console.log('<script type="text/javascript" src="http://www.x3dom.org/download/dev/x3dom-full.js"></script>');
         console.log('<script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>');
         console.log("<script type='text/javascript'>var element = d3.select('body')");
 	loadJSON(prototypes, "");

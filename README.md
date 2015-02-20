@@ -1,3 +1,4 @@
+USE EXTERNAL STYLESHEETS and SCRIPTS
 Requirements:
 	* Node.js 0.10
 	* Java SDK 8 (or lower, not sure)
