@@ -62,8 +62,8 @@ d3.json("radial.json", function(error, root) {
 
   node.append("text")
       .attr("dy", ".31em")
-      .attr("text-anchor", function(d) { return d.x &lt; 180 ? "start" : "end"; })
-      .attr("transform", function(d) { return d.x &lt; 180 ? "translate(8)" : "rotate(180)translate(-8)"; })
+      .attr("text-anchor", function(d) { return d.x < 180 ? "start" : "end"; })
+      .attr("transform", function(d) { return d.x < 180 ? "translate(8)" : "rotate(180)translate(-8)"; })
       .text(function(d) { return d.name; });
 });
 

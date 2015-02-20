@@ -60,7 +60,9 @@ public class ParseXML {
 	    JsonWriter writer = new JsonWriter(new OutputStreamWriter(System.out, "UTF-8"));
             SaxHandler handler   = new SaxHandler(writer);
             writer.setIndent("\t");
+	    System.err.println("Parsing");
             saxParser.parse(System.in, handler);
+	    System.err.println("Successfully parsed");
             writer.close();
         } catch (Throwable err) {
             err.printStackTrace ();
