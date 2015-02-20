@@ -3,7 +3,7 @@ JSON2D3_HOME=/Users/johncarlson/X3DJSONTOD3
 all: clean java geo heart radial dist java
 
 clean:
-	-rm ExtrusionHeart.js ExtrusionHeart.json ExtrusionHeart.radial geoComponent.js geoComponent.json geoComponent.radial radial.js radial.json radial.radial *.class
+	-rm ExtrusionHeart.js ExtrusionHeart.json ExtrusionHeart.radial geoComponent.js geoComponent.json geoComponent.radial radial.js radial.json radial.radial *.class *.2.html
 
 java:
 	${JAVA_HOME}/bin/javac -cp ${JSON2D3_HOME}:${JSON2D3_HOME}/gson-2.3.1.jar ${JSON2D3_HOME}/ParseXML.java ${JSON2D3_HOME}/D3Input.java
