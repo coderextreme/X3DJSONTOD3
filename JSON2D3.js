@@ -27,7 +27,7 @@ function loadJSON(prototypes, indent) {
 				&& tag !== 'style'
 				&& tag !== 'script'
 				) {
-				console.log(indent+"\telement.text('"+replace(prototypes[p])+"');");
+				console.log(indent+"\telement.text('"+prototypes[p]+"');");
 			}
 			console.log(indent+"\telement = element.select(function () { return this.parentNode;});");
 		}
