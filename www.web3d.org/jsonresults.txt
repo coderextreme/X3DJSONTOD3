@@ -1,0 +1,69 @@
+RESULTS 
+
+C:\www.web3d.org\header.js
+
+
+
+c:\www.web3d.org\HelloWorld.jc.json
+
+
+
+C:\www.web3d.org\header.js
+
+
+
+c:\www.web3d.org\HelloWorld.json
+
+
+[stdin]:67
+    "Transform": [
+    ^^^^^^^^^^^
+SyntaxError: Duplicate data property in object literal not allowed in strict mode
+    at Object.exports.runInThisContext (vm.js:73:16)
+    at Object.<anonymous> ([stdin]-wrapper:6:22)
+    at Module._compile (module.js:460:26)
+    at evalScript (node.js:431:25)
+    at Socket.<anonymous> (node.js:164:11)
+    at Socket.emit (events.js:129:20)
+    at _stream_readable.js:908:16
+    at process._tickCallback (node.js:355:11)
+
+C:\www.web3d.org\header.js
+
+
+
+c:\www.web3d.org\simple.json
+
+
+[stdin]:5
+	"name": "v"
+	^^^^^^
+SyntaxError: Duplicate data property in object literal not allowed in strict mode
+    at Object.exports.runInThisContext (vm.js:73:16)
+    at Object.<anonymous> ([stdin]-wrapper:6:22)
+    at Module._compile (module.js:460:26)
+    at evalScript (node.js:431:25)
+    at Socket.<anonymous> (node.js:164:11)
+    at Socket.emit (events.js:129:20)
+    at _stream_readable.js:908:16
+    at process._tickCallback (node.js:355:11)
+
+C:\www.web3d.org\header.js
+
+
+
+c:\www.web3d.org\xmltojson.json
+
+
+[stdin]:41
+wikipedia.org/wiki/Hello#\ <http://en.wikipedia.org/wiki/Hello#%5C>"__Hello,_W
+                                                                    ^^^^^^^
+SyntaxError: Unexpected identifier
+    at Object.exports.runInThisContext (vm.js:73:16)
+    at Object.<anonymous> ([stdin]-wrapper:6:22)
+    at Module._compile (module.js:460:26)
+    at evalScript (node.js:431:25)
+    at Socket.<anonymous> (node.js:164:11)
+    at Socket.emit (events.js:129:20)
+    at _stream_readable.js:908:16
+    at process._tickCallback (node.js:355:11)
