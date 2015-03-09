@@ -13,3 +13,4 @@ echo "Creating JavaScript..."
 #node ${JSON2D3_HOME}/JSON2D3.js < "$DIRFILE".json > "$DIRFILE".js
 #(echo '<!doctype html><html><head><link rel="stylesheet" type="text/css" href="http://www.x3dom.org/download/dev/x3dom.css"/></head><body></body>'; cat "$DIRFILE".json | node ${JSON2D3_HOME}/JSON2D3.js; echo  '</html>'; ) > "$DIRFILE".2.html
 (echo '<!doctype html><html><head><link rel="stylesheet" type="text/css" href="http://www.x3dom.org/download/dev/x3dom.css"/></head><body></body>'; cat "$DIRFILE".json | node ${JSON2D3_HOME}/X3DJSONTOD3.js; echo  '</html>'; ) > "$DIRFILE".3.html
+cat "$DIRFILE".json | node ${JSON2D3_HOME}/JSON2X3D.js > "$DIRFILE".2.x3d
