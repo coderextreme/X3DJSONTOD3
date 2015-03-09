@@ -10,6 +10,10 @@ function printElement(el, indent) {
 	var child;
 	var key;
 	var attrs;
+	if (typeof el === 'string') {
+		console.log(indent+el);
+		return;
+	}
 	if (el.key) {
 		key = el.key;
 	}
@@ -17,21 +21,21 @@ function printElement(el, indent) {
 		attrs = " "+el.attributes.join(" ");
 	}
 	if (el.children && typeof key !== 'undefined' && typeof attrs !== 'undefined' ) {
-			console.log(indent+"<"+key+attrs+">")
-	} else if (el.children && typeof key!== 'undefined' ) {
-			console.log(indent+"<"+key+">")
+		console.log(indent+"<"+key+attrs+">")
+	} else if (el.children && typeof key !== 'undefined' ) {
+		console.log(indent+"<"+key+">")
 	} else if (typeof key !== 'undefined' && typeof attrs !== 'undefined' ) {
-			console.log(indent+"<"+key+attrs+"/>")
+		console.log(indent+"<"+key+attrs+"/>")
 	} else if (typeof key !== 'undefined' ) {
-			console.log(indent+"<"+key+"/>")
+		console.log(indent+"<"+key+"/>")
 	}
 	for (child in el) {
 		if (child === "children") {
-			printElement(el[child], indent+"");
+			printElement(el[child], indent+" ");
 		} else {
 			if (isNaN(parseInt(child))) {
 			} else {
-				printElement(el[child], indent+"");
+				printElement(el[child], indent+" ");
 			}
 		}
 	}
@@ -95,7 +99,11 @@ function ConvertToX3D(object, parentkey) {
 		} else if (typeof object[key] === 'number') {
 			attributes.push(key.substr(1)+"='"+object[key]+"'");
 		} else if (typeof object[key] === 'string') {
-			attributes.push(key.substr(1)+"='"+object[key]+"'");
+			if (key === '#comment') {
+				children.push('<!--'+object[key]+'-->');
+			} else {
+				attributes.push(key.substr(1)+"='"+object[key]+"'");
+			}
 		} else if (typeof object[key] === 'boolean') {
 			attributes.push(key.substr(1)+"='"+object[key]+"'");
 		} else {
