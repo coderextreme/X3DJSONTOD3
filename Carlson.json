@@ -1,0 +1,210 @@
+{ "_type":"X3D",
+    "profile":"Immersive",
+    "version":"3.3",
+    "xsd:noNamespaceSchemaLocation":"http://www.web3d.org/specifications/x3d-3.3.xsd",
+    "children": [
+	{ "_type": "head",
+	  "children" : [
+	      {   "_type":"meta",
+		  "content":"HelloWorld.x3d",
+		  "name":"title"
+	      },
+	      {   "_type":"meta",
+		  "content":"Simple X3D scene example: Hello World!",
+		  "name":"description"
+	      },
+	      {   "_type":"meta",
+		  "content":"30 October 2000",
+		  "name":"created"
+	      },
+	      {   "_type":"meta",
+		  "content":"8 March 2015",
+		  "name":"modified"
+	      },
+	      {   "_type":"meta",
+		  "content":"Don Brutzman",
+		  "name":"creator"
+	      },
+	      {   "_type":"meta",
+		  "content":"HelloWorld.tall.png",
+		  "name":"Image"
+	      },
+	      {   "_type":"meta",
+		  "content":"http://en.wikipedia.org/wiki/Hello_world",
+		  "name":"reference"
+	      },
+	      {   "_type":"meta",
+		  "content":"http://en.wikipedia.org/wiki/Hello#\"Hello,_World\"_computer_program",
+		  "name":"reference"
+	      },
+	      {   "_type":"meta",
+		  "content":"http://en.wikibooks.org/w/index.php?title=Computer_Programming/Hello_world",
+		  "name":"reference"
+	      },
+	      {   "_type":"meta",
+		  "content":"http://www.HelloWorldExample.net",
+		  "name":"reference"
+	      },
+	      {   "_type":"meta",
+		  "content":"http://www.web3D.org",
+		  "name":"reference"
+	      },
+	      {   "_type":"meta",
+		  "content":"http://www.web3d.org/realtime-3d/news/internationalization-x3d",
+		  "name":"reference"
+	      },
+	      {   "_type":"meta",
+		  "content":"http://www.web3d.org/x3d/content/examples/HelloWorld.x3d",
+		  "name":"reference"
+	      },
+	      {   "_type":"meta",
+		  "content":"http://X3dGraphics.com/examples/X3dForAdvancedModeling/HelloWorldScenes",
+		  "name":"reference"
+	      },
+	      {   "_type":"meta",
+		  "content":"http://X3dGraphics.com/examples/X3dForWebAuthors/Chapter01-TechnicalOverview/HelloWorld.x3d",
+		  "name":"identifier"
+	      },
+	      {   "_type":"meta",
+		  "content":"http://www.web3d.org/x3d/content/examples/license.html",
+		  "name":"license"
+	      },
+	      {   "_type":"meta",
+		  "content":"X3D-Edit 3.3, https://savage.nps.edu/X3D-Edit",
+		  "name":"generator"
+	      },
+	      {   "_type":"#comment",
+		  "content":"Alternate encodings: VRML97, X3D ClassicVRML Encoding, X3D Compressed Binary Encoding (CBE), X3DOM, JSON"
+	      },
+	      {   "_type":"meta",
+		  "content":"HelloWorld.wrl",
+		  "name":"reference"
+	      },
+	      {   "_type":"meta",
+		  "content":"HelloWorld.x3dv",
+		  "name":"reference"
+	      },
+	      {   "_type":"meta",
+		  "content":"HelloWorld.x3db",
+		  "name":"reference"
+	      },
+	      {   "_type":"meta",
+		  "content":"HelloWorld.xhtml",
+		  "name":"reference"
+	      },
+	      {   "_type":"meta",
+		  "content":"HelloWorld.json",
+		  "name":"reference"
+	      }
+	    ]},
+	{ "_type": "Scene",
+	  "children" : [
+	     { "_type":"#comment",
+		"content":"Example scene to illustrate X3D nodes and fields (XML elements and attributes)"
+	      },
+	      {   "_type":"Group",
+		  "bboxCenter":[0, 0, 0 ],
+		  "bboxSize":[-1, -1, -1 ],
+		  "children":
+		  [ {   "_type":"Viewpoint",
+			"DEF":"ViewUpClose",
+			"centerOfRotation":[0, -1, 0 ],
+			"description":"Hello world!",
+			"position":[0, -1, 7 ],
+			"fieldOfView":0.7854,
+			"jump":true,
+			"orientation":[0, 0, 1, 0 ],
+			"retainUserOffsets":false
+		    },
+		    {   "_type":"Transform",
+			"rotation":[0, 1, 0, 3 ],
+			"center":[0, 0, 0 ],
+			"scale":[1, 1, 1 ],
+			"scaleOrientation":[0, 0, 1, 0 ],
+			"translation":[0, 0, 0 ],
+			"bboxCenter":[0, 0, 0 ],
+			"bboxSize":[-1, -1, -1 ],
+			"children":
+			[ {   "_type":"Shape",
+			      "bboxCenter":[0, 0, 0 ],
+			      "bboxSize":[-1, -1, -1 ],
+			      "geometry":
+				{   "_type":"Sphere",
+				    "radius":1,
+				    "solid":true
+				},
+			      "appearance":
+				{   "_type":"Appearance",
+				    "material":
+				      {   "_type":"Material",
+					  "DEF":"MaterialLightBlue",
+					  "diffuseColor":[0.1, 0.5, 1 ],
+					  "ambientIntensity":0.2,
+					  "emissiveColor":[0, 0, 0 ],
+					  "shininess":0.2,
+					  "specularColor":[0, 0, 0 ],
+					  "transparency":0
+				      },
+				    "texture":
+				      { "_type":"ImageTexture",
+					  "DEF":"ImageCloudlessEarth",
+					  "url":["earth-topo.png", "earth-topo.jpg", "earth-topo-small.gif", "http://www.web3d.org/x3d/content/examples/Basic/earth-topo.png", "http://www.web3d.org/x3d/content/examples/Basic/earth-topo.jpg", "http://www.web3d.org/x3d/content/examples/Basic/earth-topo-small.gif" ],
+					  "repeatS":true,
+					  "repeatT":true
+				      }
+				}
+			  }
+			]
+		    },
+		    {   "_type":"Transform",
+			"translation":[0, -2, 0 ],
+			"center":[0, 0, 0 ],
+			"rotation":[0, 0, 1, 0 ],
+			"scale":[1, 1, 1 ],
+			"scaleOrientation":[0, 0, 1, 0 ],
+			"bboxCenter":[0, 0, 0 ],
+			"bboxSize":[-1, -1, -1 ],
+			"children":
+			[ {   "_type":"Shape",
+			      "bboxCenter":[0, 0, 0 ],
+			      "bboxSize":[-1, -1, -1 ],
+			      "geometry":
+				{   "_type":"Text",
+				    "DEF":"TextMessage",
+				    "string":["Hello", "world!" ],
+				    "maxExtent":0.0,
+				    "solid":false,
+				    "fontStyle":
+				      {   "_type":"FontStyle",
+					  "justify":["MIDDLE", "MIDDLE" ],
+					  "family":["SERIF" ],
+					  "horizontal":true,
+					  "leftToRight":true,
+					  "size":1.0,
+					  "spacing":1.0,
+					  "style":"PLAIN",
+					  "topToBottom":true
+				      }
+				},
+			      "appearance":
+				{   "_type":"Appearance",
+				    "material":
+				      {   "_type":"Material",
+					  "USE":"MaterialLightBlue",
+					  "ambientIntensity":0.2,
+					  "diffuseColor":[0.8, 0.8, 0.8 ],
+					  "emissiveColor":[0, 0, 0 ],
+					  "shininess":0.2,
+					  "specularColor":[0, 0, 0 ],
+					  "transparency":0
+				      }
+				}
+			  }
+			]
+		    }
+		  ]
+	      }
+	    ]
+	}
+     ]
+}

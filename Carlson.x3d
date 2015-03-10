@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 3.3//EN" "http://www.web3d.org/specifications/x3d-3.3.dtd">
+<X3D profile='Immersive' version='3.3' xsd:noNamespaceSchemaLocation='http://www.web3d.org/specifications/x3d-3.3.xsd'>
+    <head>
+        <meta content='HelloWorld.x3d' name='title'>
+        </meta>
+        <meta content='Simple X3D scene example: Hello World!' name='description'>
+        </meta>
+        <meta content='30 October 2000' name='created'>
+        </meta>
+        <meta content='8 March 2015' name='modified'>
+        </meta>
+        <meta content='Don Brutzman' name='creator'>
+        </meta>
+        <meta content='HelloWorld.tall.png' name='Image'>
+        </meta>
+        <meta content='http://en.wikipedia.org/wiki/Hello_world' name='reference'>
+        </meta>
+        <meta content='http://en.wikipedia.org/wiki/Hello#"Hello,_World"_computer_program' name='reference'>
+        </meta>
+        <meta content='http://en.wikibooks.org/w/index.php?title=Computer_Programming/Hello_world' name='reference'>
+        </meta>
+        <meta content='http://www.HelloWorldExample.net' name='reference'>
+        </meta>
+        <meta content='http://www.web3D.org' name='reference'>
+        </meta>
+        <meta content='http://www.web3d.org/realtime-3d/news/internationalization-x3d' name='reference'>
+        </meta>
+        <meta content='http://www.web3d.org/x3d/content/examples/HelloWorld.x3d' name='reference'>
+        </meta>
+        <meta content='http://X3dGraphics.com/examples/X3dForAdvancedModeling/HelloWorldScenes' name='reference'>
+        </meta>
+        <meta content='http://X3dGraphics.com/examples/X3dForWebAuthors/Chapter01-TechnicalOverview/HelloWorld.x3d' name='identifier'>
+        </meta>
+        <meta content='http://www.web3d.org/x3d/content/examples/license.html' name='license'>
+        </meta>
+        <meta content='X3D-Edit 3.3, https://savage.nps.edu/X3D-Edit' name='generator'>
+        </meta>
+        <!--Alternate encodings: VRML97, X3D ClassicVRML Encoding, X3D Compressed Binary Encoding (CBE), X3DOM, JSON-->
+        <meta content='HelloWorld.wrl' name='reference'>
+        </meta>
+        <meta content='HelloWorld.x3dv' name='reference'>
+        </meta>
+        <meta content='HelloWorld.x3db' name='reference'>
+        </meta>
+        <meta content='HelloWorld.xhtml' name='reference'>
+        </meta>
+        <meta content='HelloWorld.json' name='reference'>
+        </meta>
+    </head>
+    <Scene>
+        <!--Example scene to illustrate X3D nodes and fields (XML elements and attributes)-->
+        <Group bboxCenter='0 0 0' bboxSize='-1 -1 -1'>
+            <Viewpoint DEF='ViewUpClose' centerOfRotation='0 -1 0' description='Hello world!' position='0 -1 7' fieldOfView='0.7854' jump='true' orientation='0 0 1 0' retainUserOffsets='false'>
+            </Viewpoint>
+            <Transform rotation='0 1 0 3' center='0 0 0' scale='1 1 1' scaleOrientation='0 0 1 0' translation='0 0 0' bboxCenter='0 0 0' bboxSize='-1 -1 -1'>
+                <Shape bboxCenter='0 0 0' bboxSize='-1 -1 -1'>
+                  <Sphere radius='1' solid='true'>
+                  </Sphere>
+                  <Appearance>
+                    <Material DEF='MaterialLightBlue' diffuseColor='0.1 0.5 1' ambientIntensity='0.2' emissiveColor='0 0 0' shininess='0.2' specularColor='0 0 0' transparency='0'>
+                    </Material>
+                    <ImageTexture DEF='ImageCloudlessEarth' url='&quot;earth-topo.png&quot; &quot;earth-topo.jpg&quot; &quot;earth-topo-small.gif&quot; &quot;http://www.web3d.org/x3d/content/examples/Basic/earth-topo.png&quot; &quot;http://www.web3d.org/x3d/content/examples/Basic/earth-topo.jpg&quot; &quot;http://www.web3d.org/x3d/content/examples/Basic/earth-topo-small.gif&quot;' repeatS='true' repeatT='true'>
+                    </ImageTexture>
+                  </Appearance>
+                </Shape>
+            </Transform>
+            <Transform translation='0 -2 0' center='0 0 0' rotation='0 0 1 0' scale='1 1 1' scaleOrientation='0 0 1 0' bboxCenter='0 0 0' bboxSize='-1 -1 -1'>
+                <Shape bboxCenter='0 0 0' bboxSize='-1 -1 -1'>
+                  <Text DEF='TextMessage' string='&quot;Hello&quot; &quot;world!&quot;' maxExtent='0' solid='false'>
+                    <FontStyle justify='&quot;MIDDLE&quot; &quot;MIDDLE&quot;' family='&quot;SERIF&quot;' horizontal='true' leftToRight='true' size='1' spacing='1' style='PLAIN' topToBottom='true'>
+                    </FontStyle>
+                  </Text>
+                  <Appearance>
+                    <Material USE='MaterialLightBlue' ambientIntensity='0.2' diffuseColor='0.8 0.8 0.8' emissiveColor='0 0 0' shininess='0.2' specularColor='0 0 0' transparency='0'>
+                    </Material>
+                  </Appearance>
+                </Shape>
+            </Transform>
+        </Group>
+    </Scene>
+</X3D>
