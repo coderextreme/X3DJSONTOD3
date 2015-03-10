@@ -127,7 +127,8 @@ function ConvertToX3D(object, parentkey) {
 process.stdin.on('end', function() {
 	var json = JSON.parse(content);
 console.log('<?xml version="1.0" encoding="UTF-8"?>');
-console.log('<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 3.3//EN" "http://www.web3d.org/specifications/x3d-3.3.dtd">');
+console.log('<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 3.3//EN" "http://www.web3d.org/specifications/x3d-3.3.dtd"><X3D><Scene>');
 	var el = ConvertToX3D(json, "", "");
 	printElement(el, "");
+console.log('</Scene></X3D>');
 });
