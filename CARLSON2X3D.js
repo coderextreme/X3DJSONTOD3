@@ -57,10 +57,6 @@ function ConvertToX3D(object, parentkey) {
 			elkey = object[key];
 			continue;
 		} 
-		if (key === '#comment') {
-			children.push('<!--'+object.content+'-->');
-			break;
-		}
 		if (isNaN(parseInt(key))) {
 			isArray = false;
 		} else {
