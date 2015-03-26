@@ -1,19 +1,37 @@
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
-import org.xml.sax.helpers.DefaultHandler;
+import org.xml.sax.XMLReader;
+import org.xml.sax.ext.DefaultHandler2;
 import java.util.*;
 import java.io.*;
 import javax.xml.parsers.SAXParserFactory;
 import javax.xml.parsers.SAXParser;
 import com.google.gson.stream.JsonWriter;
 
-class D3InputSaxHandler extends DefaultHandler {
+class D3InputSaxHandler extends DefaultHandler2 {
 
     private JsonWriter writer = null;
 
     public D3InputSaxHandler(JsonWriter writer) {
 	this.writer = writer;
     }
+
+/*
+    public void startDocument() throws SAXException {
+	try {
+		writer.beginArray();
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
+    }
+    public void endDocument() throws SAXException {
+	try {
+		writer.endArray();
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
+    }
+*/
 
     public void startElement(String uri, String localName,
         String qName, Attributes attributes) throws SAXException {
@@ -40,7 +58,7 @@ class D3InputSaxHandler extends DefaultHandler {
 
     public void characters(char ch[], int start, int length)
         throws SAXException {
-
+/*
 	String value = new String(ch, start, length).trim();
         if(value.length() == 0) return; // ignore white space
 	try {
@@ -48,18 +66,21 @@ class D3InputSaxHandler extends DefaultHandler {
 	} catch (IOException e) {
 		e.printStackTrace();
 	}
+*/
     }
 
     public void comment(char ch[], int start, int length)
         throws SAXException {
 
-	String value = new String(ch, start, length).trim();
+/*
+	String value = new String(ch, start, length);
         if(value.length() == 0) return; // ignore white space
 	try {
 		writer.value(value);
 	} catch (IOException e) {
 		e.printStackTrace();
 	}
+*/
     }
 }    
 
@@ -68,8 +89,11 @@ public class D3Input {
         SAXParserFactory factory = SAXParserFactory.newInstance();
         try {
             SAXParser      saxParser = factory.newSAXParser();
+	    XMLReader xmlReader = saxParser.getXMLReader();
 	    JsonWriter writer = new JsonWriter(new OutputStreamWriter(System.out, "UTF-8"));
             D3InputSaxHandler handler   = new D3InputSaxHandler(writer);
+	    xmlReader.setProperty("http://xml.org/sax/properties/lexical-handler",
+                      handler); 
             writer.setIndent("\t");
 	    System.err.println("Parsing");
             saxParser.parse(System.in, handler);
