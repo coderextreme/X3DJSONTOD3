@@ -40,7 +40,7 @@ function ConvertToD3js(object, indent, parentkey, element) {
 				ConvertChildren(object[key], indent, key, element);
 			} else {
 				if (key === "Scene" || key === "X3D") {
-					ConvertToD3js(object[key], indent, key, element);
+					ConvertToD3js(object[key], indent, key, d3.select(key));
 				} else {
 					element = element.append(key);
 					ConvertToD3js(object[key], indent, key, element);
@@ -74,8 +74,10 @@ function ConvertToD3js(object, indent, parentkey, element) {
 }
 
 function loadX3DJSON(selector, url) {
-	$.get(url, function(json) {
+	$.getJSON(url, function(json) {
+		console.log(json);
 		var element = d3.select(selector);
 		ConvertToD3js(json, "", "", element);
-	});
+	})
+	.fail(function(jqXHR, textStatus, errorThrown) { alert('getJSON request failed! ' + textStatus + ' ' + errorThrown); });
 }
