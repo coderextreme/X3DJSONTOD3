@@ -282,6 +282,7 @@
 	</select>
         <script type="text/javascript">
 		$("select").change(function() {
+			d3.select('x3d').selectAll('head').remove();
 			d3.select('#scene').selectAll('*').remove();
 			loadX3DJSON('#scene',$('select option:selected').text());
 		});
