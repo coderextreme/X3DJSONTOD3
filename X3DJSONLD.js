@@ -39,7 +39,7 @@ function ConvertToD3js(object, indent, parentkey, element) {
 			} else if (key.substr(0,1) === '-') {
 				ConvertChildren(object[key], indent, key, element);
 			} else {
-				if (key === "Scene") {
+				if (key === "Scene" || key === "X3D") {
 					ConvertToD3js(object[key], indent, key, element);
 				} else {
 					element = element.append(key);
