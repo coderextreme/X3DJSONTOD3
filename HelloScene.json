@@ -1,0 +1,164 @@
+[
+  { "Scene":[
+        { "@render":"true",
+          "@bboxCenter":[0, 0, 0],
+          "@bboxSize":[-1, -1, -1],
+          "@doPickPass":"true",
+          "@pickMode":"idBuf",
+          "Group":
+          {
+            "@render":"true",
+            "@bboxCenter":[0, 0, 0],
+            "@bboxSize":[-1, -1, -1],
+            "-children":[
+              { "Viewpoint":
+                {
+                  "@DEF":"ViewUpClose",
+                  "@centerOfRotation":[0, -1, 0],
+                  "@description":"Hello world!",
+                  "@position":[0, -1, 7],
+                  "@fieldOfView":0.7854,
+                  "@jump":true,
+                  "@orientation":[0, 0, 0, 0],
+		  "@zNear":"-1",
+		  "@zFar":"-1",
+                  "@retainUserOffsets":false
+                }
+              },
+              { "Transform":
+                {
+                  "@render":"true",
+                  "@rotation":[0, 1, 0, 3],
+                  "@center":[0, 0, 0],
+                  "@scale":[1, 1, 1],
+                  "@scaleOrientation":[0, 0, 0, 0],
+                  "@translation":[0, 0, 0],
+                  "@bboxCenter":[0, 0, 0],
+                  "@bboxSize":[-1, -1, -1],
+                  "-children":[
+                    { "Shape":
+                      {
+                        "@render":"true",
+                        "@bboxCenter":[0, 0, 0],
+                        "@bboxSize":[-1, -1, -1],
+                        "@isPickable":"true",
+                        "-geometry":[
+                          { "Sphere":
+                            {
+                              "@radius":1,
+                              "@solid":true,
+                              "@ccw":true,
+                              "@useGeoCache":true,
+                              "@lit":true,
+                              "@subdivision":[24, 24]
+                            }
+                          }
+                        ],
+                        "-appearance":[
+                          { "Appearance":
+                            {
+			      "@sortType":"auto",
+                              "@alphaClipThreshold":"0.1",
+                              "-material":[
+                                { "Material":
+                                  {
+                                    "@DEF":"MaterialLightBlue",
+                                    "@diffuseColor":[0.1, 0.5, 1],
+                                    "@ambientIntensity":0.2,
+                                    "@emissiveColor":[0, 0, 0],
+                                    "@shininess":0.2,
+                                    "@specularColor":[0, 0, 0],
+                                    "@transparency":0
+                                  }
+                                }
+                              ],
+                              "-texture":[
+                                { "ImageTexture":
+                                  {
+                                    "@DEF":"ImageCloudlessEarth",
+                                    "@url":["earth-topo.png", "earth-topo.jpg", "earth-topo-small.gif", "http://www.web3d.org/x3d/content/examples/Basic/earth-topo.png", "http://www.web3d.org/x3d/content/examples/Basic/earth-topo.jpg", "http://www.web3d.org/x3d/content/examples/Basic/earth-topo-small.gif"],
+                                    "@repeatS":true,
+                                    "@repeatT":true,
+                                    "@scale":true,
+                                    "@hideChildren":true
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              { "Transform":
+                {
+                  "@render":"true",
+                  "@translation":[0, -2, 0],
+                  "@center":[0, 0, 0],
+                  "@rotation":[0, 0, 0, 0],
+                  "@scale":[1, 1, 1],
+                  "@scaleOrientation":[0, 0, 0, 0],
+                  "@bboxCenter":[0, 0, 0],
+                  "@bboxSize":[-1, -1, -1],
+                  "-children":[
+                    { "Shape":
+                      {
+                        "@render":"true",
+                        "@bboxCenter":[0, 0, 0],
+                        "@bboxSize":[-1, -1, -1],
+                        "@isPickable":"true",
+                        "-geometry":[
+                          { "Text":
+                            {
+                              "@DEF":"TextMessage",
+                              "@string":["Hello", "world!"],
+                              "@solid":true,
+                              "@ccw":true,
+                              "@useGeoCache":true,
+                              "@lit":true,
+                              "-fontStyle":[
+                                { "FontStyle":
+                                  {
+                                    "@justify":["MIDDLE", "MIDDLE"],
+                                    "@family":["SERIF"],
+                                    "@horizontal":true,
+                                    "@leftToRight":true,
+                                    "@size":1.0,
+                                    "@spacing":1.0,
+                                    "@style":"PLAIN",
+                                    "@topToBottom":true
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        ],
+                        "-appearance":[
+                          { "Appearance":
+                            {
+			      "@sortType":"auto",
+                              "@alphaClipThreshold":"0.1",
+                              "-material":[
+                                { "Material":
+                                  {
+                                    "@USE":"MaterialLightBlue",
+                                    "@diffuseColor":[0.1, 0.5, 1]
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+  }
+]
