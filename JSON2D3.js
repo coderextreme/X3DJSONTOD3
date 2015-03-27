@@ -41,7 +41,7 @@ function loadJSON(prototypes, indent) {
 				} else if (style) {
 					buffer += prototypes[p];
 				} else {
-					console.log(indent+"/*"+prototypes[p]+"*/");
+					console.log(indent+"element.append(function() { return document.createComment('"+prototypes[p]+"'); });");
 				}
 			}
 		}
