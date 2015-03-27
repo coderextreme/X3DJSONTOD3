@@ -8,6 +8,8 @@ import javax.xml.parsers.SAXParserFactory;
 import javax.xml.parsers.SAXParser;
 import com.google.gson.stream.JsonWriter;
 
+// Convert X3D XML to format acceptable as D3 hierarchical input
+
 class D3InputSaxHandler extends DefaultHandler2 {
 
     private JsonWriter writer = null;

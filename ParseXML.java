@@ -9,6 +9,9 @@ import javax.xml.parsers.SAXParserFactory;
 import javax.xml.parsers.SAXParser;
 import com.google.gson.stream.JsonWriter;
 
+
+// convert XML to My JSON format with jsontag attributes in objects
+
 class SaxHandler extends DefaultHandler2 {
 
     private JsonWriter writer = null;
