@@ -68,7 +68,7 @@ class SaxHandler extends DefaultHandler2 {
 		String value = new String(ch, start, length);
 		if(value.length() == 0) return; // ignore white space
 		try {
-			writer.value(value);
+			writer.value("<!--"+value+"-->");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -77,7 +77,7 @@ class SaxHandler extends DefaultHandler2 {
     public void characters(char ch[], int start, int length)
         throws SAXException {
 
-	String value = new String(ch, start, length);
+	String value = new String(ch, start, length).trim();
         if(value.length() == 0) return; // ignore white space
 	try {
 		writer.value(value);
