@@ -1,6 +1,8 @@
 "use strict";
 // Java Style Sheet Language, implementation 1
 
+// Convert X3D JSON to D3 JavaScript
+
 var content = '';
 // read content into buffer
 process.stdin.resume();

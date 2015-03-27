@@ -1,6 +1,8 @@
 "use strict";
 // Java Style Sheet Language, implementation 1
 
+// convert Herbert derived X3D JSON to X3D XML
+
 var content = '';
 // read content into buffer
 process.stdin.resume();

@@ -1,5 +1,7 @@
 // Java Style Sheet Language, implementation 2
 
+// convert my JSON format to D3 JavaScript
+
 var content = '';
 // read content into buffer
 process.stdin.resume();

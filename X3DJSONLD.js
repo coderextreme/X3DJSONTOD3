@@ -1,5 +1,7 @@
 "use strict";
 
+// Load X3D JSON into web page
+
 function ConvertChildren(object, indent, parentkey, element) {
 	var key;
 	for (key in object) {

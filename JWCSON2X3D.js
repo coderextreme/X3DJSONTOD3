@@ -1,5 +1,7 @@
 // Java Style Sheet Language, implementation 2
 
+// Convert my JSON format to X3D XML
+
 var content = '';
 // read content into buffer
 process.stdin.resume();
