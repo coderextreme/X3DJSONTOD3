@@ -24,9 +24,9 @@ function ConvertJSONToX3D(prototypes, indent) {
 			if (typeof prototypes[p] === 'object') {
 				tag = prototypes[p]["jsontag"];
 				if (typeof tag !== 'undefined') {
-					if (tag === 'style') {
+					if (tag.toLowerCase() === 'style') {
 						style = true;
-					} else if (tag === 'script') {
+					} else if (tag.toLowerCase() === 'script') {
 						script = true;
 					}
 					var attrs = [];
@@ -57,15 +57,24 @@ function ConvertJSONToX3D(prototypes, indent) {
 				} else if (style) {
 					buffer += prototypes[p];
 				} else {
-					console.log(indent+"  <!--"+prototypes[p]+"-->");
+					console.log(indent+"<!--"+prototypes[p]+"-->");
 				}
 			}
 		}
 		if (buffer !== '') {
-			console.log(indent+buffer
-				.replace(/&/g, '&amp;')
-				.replace(/</g, '&lt;')
-				.replace(/>/g, '&gt;'));
+			if (buffer.indexOf("ecmascript:") === 0) {
+				console.log("<![CDATA[");
+				console.log(buffer
+					.replace(/&/g, '&amp;')
+					.replace(/</g, '&lt;')
+					.replace(/>/g, '&gt;'));
+				console.log("]]>");
+			} else {
+				console.log(indent+buffer
+					.replace(/&/g, '&amp;')
+					.replace(/</g, '&lt;')
+					.replace(/>/g, '&gt;'));
+			}
 		}
 		if (prototypes.length > 1 && typeof prototypes[0]['jsontag'] !== 'undefined') {
 			console.log(indent+"</"+prototypes[0]['jsontag']+">");
@@ -75,7 +84,7 @@ function ConvertJSONToX3D(prototypes, indent) {
 
 process.stdin.on('end', function() {
 	var prototypes = JSON.parse(content);
-console.log('<?xml version="1.0" encoding="UTF-8"?>');
-console.log('<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 3.3//EN" "http://www.web3d.org/specifications/x3d-3.3.dtd">');
+console.log("<?xml version='1.0' encoding='UTF-8'?>");
+console.log("<!DOCTYPE X3D PUBLIC 'ISO//Web3D//DTD X3D 3.3//EN' 'http://www.web3d.org/specifications/x3d-3.3.dtd'>");
 	ConvertJSONToX3D(prototypes, undefined);
 });

@@ -1,12 +1,21 @@
 JSON2D3_HOME=/Users/johncarlson/X3DJSONTOD3
 
-all: clean java HelloWorld geo heart radial DolphinMorpher dist java
+all: clean java HelloWorld geo heart radial DolphinMorpher Script pp3 dist java
 
 clean:
 	-rm ExtrusionHeart.js ExtrusionHeart.json *.radial geoComponent.js geoComponent.json radial.js radial.json *.class *.2.html *.3.html *.2.x3d *.2.json HelloWorld.json HelloWorld.js DolphinMorpher.js DolphinMorpher.json output/DolphinMorpher.2.x3d output/DolphinMorpher.3.html output/DolphinMorpher.radial output/HelloWorld.2.x3d output/HelloWorld.3.html output/HelloWorld.radial
 
 java:
 	${JAVA_HOME}/bin/javac -cp ${JSON2D3_HOME}:${JSON2D3_HOME}/gson-2.3.1.jar ${JSON2D3_HOME}/ParseXML.java ${JSON2D3_HOME}/D3Input.java
+
+TestJson: java
+	${JAVA_HOME}/bin/java -cp ${JSON2D3_HOME}:${JSON2D3_HOME}/gson-2.3.1.jar ParseXML < TestJsonEncoding.x3d > TestJsonEncoding.json
+
+Script: java
+	${JAVA_HOME}/bin/java -cp ${JSON2D3_HOME}:${JSON2D3_HOME}/gson-2.3.1.jar ParseXML < ScriptControlEvents.x3d > ScriptControlEvents.json
+
+pp3: java
+	${JAVA_HOME}/bin/java -cp ${JSON2D3_HOME}:${JSON2D3_HOME}/gson-2.3.1.jar ParseXML < pp3.x3d > pp3.json
 
 geo: java
 	${JAVA_HOME}/bin/java -cp ${JSON2D3_HOME}:${JSON2D3_HOME}/gson-2.3.1.jar ParseXML < geoComponent.x3d > geoComponent.json
