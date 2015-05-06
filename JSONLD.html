@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+<head>
+<title>JSON Loader</title>
+    <link rel="stylesheet" type="text/css" 
+          href="http://www.x3dom.org/x3dom/release/x3dom.css">
+    </link>
+    <script type="text/javascript" 
+            src="http://www.x3dom.org/x3dom/release/x3dom.js">
+    </script>
+</head>
+<body>
+<X3D>
+<scene id="scene">
+</scene>
+</X3D>
+</body>
+        <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+	<script language="Javascript" src="http://code.jquery.com/jquery-1.11.1.js"></script>
+        <script type="text/javascript">
+// Load X3D JSON into web page
+
+function ConvertChildren(object, indent, parentkey, element) {
+	var key;
+	for (key in object) {
+		if (typeof object[key] === 'object') {
+				ConvertToD3js(object[key], indent, key, element);
+		}
+	}
+}
+
+function ConvertToD3js(object, indent, parentkey, element) {
+	var key;
+	var localArray = [];
+	var isArray = false;
+	var arrayOfStrings = false;
+	for (key in object) {
+		if (isNaN(parseInt(key))) {
+			isArray = false;
+		} else {
+			isArray = true;
+		}
+		if (isArray) {
+			if (typeof object[key] === 'number') {
+				localArray.push(object[key]);
+			} else if (typeof object[key] === 'string') {
+				localArray.push(object[key]);
+				arrayOfStrings = true;
+			} else if (typeof object[key] === 'boolean') {
+				localArray.push(object[key]);
+			} else if (typeof object[key] === 'object') {
+				ConvertToD3js(object[key], indent, key, element);
+			} else {
+				console.log("Unknown type found in array "+typeof object[key]);
+			}
+		} else if (typeof object[key] === 'object') {
+			if (key.substr(0,1) === '@') {
+				ConvertToD3js(object[key], indent, key, element);
+			} else if (key.substr(0,1) === '-') {
+				ConvertChildren(object[key], indent, key, element);
+			} else {
+				if (key.toLowerCase() === "scene" || key.toLowerCase()  === "x3d") {
+					ConvertToD3js(object[key], indent, key, d3.select(key));
+				} else {
+					element = element.append(key);
+					ConvertToD3js(object[key], indent, key, element);
+					element = element.select(function() { return this.parentNode; });
+				}
+			}
+		} else if (typeof object[key] === 'number') {
+			element.attr(key.substr(1),object[key]);
+		} else if (typeof object[key] === 'string') {
+			if (key !== '#comment') {
+				element.attr(key.substr(1),object[key]);
+			}
+		} else if (typeof object[key] === 'boolean') {
+			element.attr(key.substr(1),object[key]);
+		} else {
+			console.log("Unknown type found in object "+typeof object[key]);
+		}
+	}
+	if (isArray) {
+		if (parentkey.substr(0,1) === '@') {
+			if (arrayOfStrings) {
+				arrayOfStrings = false;
+				element.attr(parentkey.substr(1),'"'+localArray.join('" "')+'"');
+			} else {
+				element.attr(parentkey.substr(1),localArray.join(","));
+			}
+		}
+		isArray = false;
+	}
+	return element;
+}
+
+function loadX3DJS(selector, json) {
+	console.log(json);
+	var element = d3.select(selector);
+	ConvertToD3js(json, "", "", element);
+}
+
+function loadX3DJSON(selector, url) {
+	$.getJSON(url, function(json) {
+		loadX3DJS(selector, json);
+	})
+	.fail(function(jqXHR, textStatus, errorThrown) { alert('getJSON request failed! ' + textStatus + ' ' + errorThrown); });
+}
+	</script>
+<form id="jsonFile" name="jsonFile" enctype="multipart/form-data" method="post">
+  <fieldset>
+    <h2>Choose an X3D JSON File</h2>
+     <input type='file' id='fileinput'>
+     <input type='button' id='btnLoad' value='Load' onclick='loadFile();'>
+  </fieldset>
+</form>
+
+
+<script type="text/javascript">
+
+  function loadFile() {
+    var input, file, fr;
+
+    if (typeof window.FileReader !== 'function') {
+      alert("The file API isn't supported on this browser yet.");
+      return;
+    }
+
+    input = document.getElementById('fileinput');
+    if (!input) {
+      alert("Um, couldn't find the fileinput element.");
+    }
+    else if (!input.files) {
+      alert("This browser doesn't seem to support the `files` property of file inputs.");
+    }
+    else if (!input.files[0]) {
+      alert("Please select a file before clicking 'Load'");
+    }
+    else {
+      file = input.files[0];
+      fr = new FileReader();
+      fr.onload = receivedText;
+      fr.readAsText(file);
+    }
+
+    function receivedText(e) {
+      lines = e.target.result;
+      var newArr = JSON.parse(lines); 
+      d3.select('x3d').selectAll('head').remove();
+      d3.select('#scene').selectAll('*').remove();
+      loadX3DJS('#scene', newArr);
+    }
+  }
+</script>
+</html>
