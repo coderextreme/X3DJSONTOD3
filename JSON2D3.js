@@ -7,6 +7,24 @@ var content = '';
 process.stdin.resume();
 process.stdin.on('data', function(buf) { content += buf.toString(); });
 
+var protos = {
+};
+var currentproto = "";
+
+function loadElement(tag, attrs, indent) {
+	console.log(indent+"element = element.append('"+tag+"');");
+	for (attr in attrs) {
+		if (attr.indexOf("xmlns:") === 0) {
+			console.log(indent+"d3.ns.qualify('"+attr+"');");
+		} else if (attr !== "jsontag") {
+			console.log(indent+"element.attr('"+attr+"', '"+attrs[attr]+"');");
+		}
+	}
+	if (tag.toLowerCase() === 'connect') {
+		console.log(indent+"element.select(function () { return this.parentNode;}).select(function () { return this.parentNode;}).attr('"+attrs['nodeField']+"', '"+protos[currentproto]['interface'][attrs['protoField']]+"');");
+	}
+}
+
 function loadJSON(prototypes, indent) {
 	var p;
 	var tag;
@@ -17,23 +35,45 @@ function loadJSON(prototypes, indent) {
 	if (typeof prototypes === "object") {
 		for (p in prototypes) {
 			if (typeof prototypes[p] === 'object') {
-				tag = prototypes[p]["jsontag"];
+				var attrs = prototypes[p];
+				tag = attrs["jsontag"];
+			
 				if (typeof tag !== 'undefined') {
-					if (tag === 'style') {
+					if (tag.toLowerCase() === 'style') {
 						style = true;
-					} else if (tag === 'script') {
+					} else if (tag.toLowerCase() === 'script') {
 						script = true;
-					}
-					console.log(indent+"element = element.append('"+tag+"');");
-					for (attr in prototypes[p]) {
-						if (attr.indexOf("xmlns:") === 0) {
-							console.log(indent+"d3.ns.qualify('"+attr+"');");
-						} else if (attr !== "jsontag") {
-							console.log(indent+"element.attr('"+attr+"', '"+prototypes[p][attr]+"');");
+					} else if (tag.toLowerCase() === 'protodeclare') {
+						currentproto = attrs["name"];
+						protos[currentproto] = {};
+					} else if (tag.toLowerCase() === 'protointerface') {
+						protos[currentproto]['interface'] = {};
+					} else if (tag.toLowerCase() === 'protobody') {
+						var ia = [];
+						var dv = [];
+						for (i in protos[currentproto]['interface']) {
+							ia.push[i];
+							dv.push("this."+i+" = \""+protos[currentproto]['interface'][i]+"\"");
 						}
+/*
+						console.log('function '+currentproto+'('+ia.join(",")+") { "+dv.join(";\n")+";")
+						console.log(" return element; };");
+*/
+					} else if (tag.toLowerCase() === 'connect') {
+					} else if (tag.toLowerCase() === 'field') {
+						if (typeof attrs["value"] !== 'undefined') {
+							protos[currentproto]['interface'][attrs["name"]] = attrs["value"];
+						}
+					} else if (tag.toLowerCase() === 'protoinstance') {
+						console.log('element.append(function(d) { return this.appendChild('+attrs["name"]+'.node().cloneNode(true));});');
+					} else if (tag.toLowerCase() === 'is') {
+					}
+					loadElement(tag, attrs, indent);
+					if (tag.toLowerCase() === 'protobody') {
+						console.log(indent+'var '+currentproto+" = ");
 					}
 				} else {
-					loadJSON(prototypes[p], indent+"\t");
+					loadJSON(attrs, indent+"\t");
 				}
 			} else {
 				if (script) {
@@ -41,12 +81,17 @@ function loadJSON(prototypes, indent) {
 				} else if (style) {
 					buffer += prototypes[p];
 				} else {
-					console.log(indent+"element.append(function() { return document.createComment('"+prototypes[p]+"'); });");
+					console.log(indent+"element.append(function() { return document.createComment('"+prototypes[p]
+				.replace(/\n/g, '\\n')
+				.replace(/&/g, '&amp;')
+				.replace(/</g, '&lt;')
+				.replace(/>/g, '&gt;')+"'); });");
 				}
 			}
 		}
 		if (buffer !== '') {
 			console.log(indent+"element.text('"+buffer
+				.replace(/^ecmascript:/, '')
 				.replace(/\n/g, '\\n')
 				.replace(/&/g, '&amp;')
 				.replace(/</g, '&lt;')

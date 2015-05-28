@@ -1,5 +1,6 @@
 #!/bin/sh -x
-export JSON2D3_HOME=/Users/johncarlson/X3DJSONTOD3
+export JSON2D3_HOME=/Users/johncarlson/Source/X3DJSONTOD3
+export JAVA_HOME=/usr
 
 FILE="$1"
 
