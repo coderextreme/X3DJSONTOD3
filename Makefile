@@ -20,6 +20,8 @@ pp3: java
 	echo "Creating JavaScript..."
 	node JSON2D3.js < pp3.json > pp3.js
 	(echo '<!doctype html><html><head><link rel="stylesheet" type="text/css" href="http://www.x3dom.org/download/dev/x3dom.css"/></head><body></body>'; cat pp3.json | node JSON2D3.js; echo  '</html>'; ) > pp3.2.html
+	node JWCSON2X3D.js < pp3.json > pp3.2.x3d
+	-diff pp3.x3d pp3.2.x3d
 
 fish: java
 	${JAVA_HOME}/bin/java -cp ${JSON2D3_HOME}:${JSON2D3_HOME}/gson-2.3.1.jar ParseXML < CircleFishPrototype.x3d > CircleFishPrototype.json 

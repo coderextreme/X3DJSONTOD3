@@ -8,6 +8,12 @@
     <script type="text/javascript" 
             src="http://www.x3dom.org/x3dom/release/x3dom.js">
     </script>
+    <script type="text/javascript" 
+            src="http://x3dom.org/download/dev/components/Geometry2D.js">
+    </script>
+    <script type="text/javascript" 
+            src="http://x3dom.org/download/dev/components/Geometry3DExt.js">
+    </script>
 </head>
 <body>
 <X3D>
@@ -83,6 +89,17 @@ function ConvertToD3js(object, indent, parentkey, element) {
 		if (parentkey.substr(0,1) === '@') {
 			if (arrayOfStrings) {
 				arrayOfStrings = false;
+/*
+				if (parentkey === '@url') {
+					var newarray = [];
+					for (url in localArray) {
+						if (localArray[url].indexOf("http") !== 0) {
+							newarray.push(localArray[url]);
+						}
+					}
+					localArray = newarray;
+				}
+*/
 				element.attr(parentkey.substr(1),'"'+localArray.join('" "')+'"');
 			} else {
 				element.attr(parentkey.substr(1),localArray.join(","));
@@ -144,10 +161,14 @@ function loadX3DJSON(selector, url) {
 
     function receivedText(e) {
       lines = e.target.result;
-      var newArr = JSON.parse(lines); 
-      d3.select('x3d').selectAll('head').remove();
-      d3.select('#scene').selectAll('*').remove();
-      loadX3DJS('#scene', newArr);
+      try {
+	      var newArr = JSON.parse(lines); 
+	      d3.select('x3d').selectAll('head').remove();
+	      d3.select('#scene').selectAll('*').remove();
+	      loadX3DJS('#scene', newArr);
+      } catch (ex) {
+		alert(ex);
+      }
     }
   }
 </script>

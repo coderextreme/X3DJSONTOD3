@@ -32,7 +32,7 @@ function ConvertJSONToX3D(prototypes, indent) {
 					var attrs = [];
 					for (attr in prototypes[p]) {
 						if (attr !== "jsontag") {
-							attrs.push(" "+attr+"='"+prototypes[p][attr]+"'");
+							attrs.push(" "+attr+'="'+prototypes[p][attr].replace(/"/g, '&quot;')+'"');
 						}
 					}
 					var trailing = '>';
@@ -84,7 +84,7 @@ function ConvertJSONToX3D(prototypes, indent) {
 
 process.stdin.on('end', function() {
 	var prototypes = JSON.parse(content);
-console.log("<?xml version='1.0' encoding='UTF-8'?>");
-console.log("<!DOCTYPE X3D PUBLIC 'ISO//Web3D//DTD X3D 3.3//EN' 'http://www.web3d.org/specifications/x3d-3.3.dtd'>");
+console.log('<?xml version="1.0" encoding="UTF-8"?>');
+console.log('<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 3.3//EN" "http://www.web3d.org/specifications/x3d-3.3.dtd">');
 	ConvertJSONToX3D(prototypes, undefined);
 });

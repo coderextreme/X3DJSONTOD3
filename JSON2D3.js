@@ -65,12 +65,14 @@ function loadJSON(prototypes, indent) {
 							protos[currentproto]['interface'][attrs["name"]] = attrs["value"];
 						}
 					} else if (tag.toLowerCase() === 'protoinstance') {
-						console.log('element.append(function(d) { return this.appendChild('+attrs["name"]+'.node().cloneNode(true));});');
+						console.log(indent+'element.append(function(d) { return this.appendChild('+attrs["name"]+'.node().cloneNode(true));});');
 					} else if (tag.toLowerCase() === 'is') {
 					}
-					loadElement(tag, attrs, indent);
 					if (tag.toLowerCase() === 'protobody') {
 						console.log(indent+'var '+currentproto+" = ");
+						loadElement("group", attrs, indent);
+					} else {
+						loadElement(tag, attrs, indent);
 					}
 				} else {
 					loadJSON(attrs, indent+"\t");
