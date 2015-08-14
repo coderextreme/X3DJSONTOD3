@@ -76,7 +76,7 @@
                                 { "ImageTexture":
                                   {
                                     "@DEF":"ImageCloudlessEarth",
-                                    "@url":["earth-topo.png", "earth-topo.jpg", "earth-topo-small.gif", "http://www.web3d.org/x3d/content/examples/Basic/earth-topo.png", "http://www.web3d.org/x3d/content/examples/Basic/earth-topo.jpg", "http://www.web3d.org/x3d/content/examples/Basic/earth-topo-small.gif"],
+                                    "@url":["earth-topo.png", "earth-topo.jpg", "earth-topo-small.gif", "http://localhost:3000/www.web3d.org/x3d/content/examples/X3dForWebAuthors/Chapter01-TechnicalOverview/earth-topo.gif", "http://www.web3d.org/x3d/content/examples/Basic/earth-topo.png", "http://www.web3d.org/x3d/content/examples/Basic/earth-topo.jpg", "http://www.web3d.org/x3d/content/examples/Basic/earth-topo-small.gif"],
                                     "@repeatS":true,
                                     "@repeatT":true,
                                     "@scale":true,

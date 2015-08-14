@@ -70,6 +70,18 @@ function ConvertToX3DOM(object, indent, parentkey, element) {
 		if (parentkey.substr(0,1) === '@') {
 			if (arrayOfStrings) {
 				arrayOfStrings = false;
+/*
+                                if (parentkey === '@url') {
+				       var url;
+                                       var newarray = [];
+                                       for (url in localArray) {
+                                               if (localArray[url].indexOf("http") === 0) {
+                                                       newarray.push(localArray[url]);
+                                               }
+                                       }
+                                       localArray = newarray;
+                                }
+*/
 				element.setAttribute(parentkey.substr(1),'"'+localArray.join('" "')+'"');
 			} else {
 				element.setAttribute(parentkey.substr(1),localArray.join(" "));

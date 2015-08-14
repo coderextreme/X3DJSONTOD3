@@ -3,10 +3,10 @@
 <head>
 <title>JSON Loader</title>
     <link rel="stylesheet" type="text/css" 
-          href="http://www.x3dom.org/x3dom/release/x3dom.css">
+          href="http://x3dom.org/download/dev/x3dom.css">
     </link>
     <script type="text/javascript" 
-            src="http://www.x3dom.org/x3dom/release/x3dom.js">
+            src="http://x3dom.org/download/dev/x3dom-full.js">
     </script>
     <script type="text/javascript" 
             src="http://x3dom.org/download/dev/components/Geometry2D.js">
@@ -89,17 +89,15 @@ function ConvertToD3js(object, indent, parentkey, element) {
 		if (parentkey.substr(0,1) === '@') {
 			if (arrayOfStrings) {
 				arrayOfStrings = false;
-/*
-				if (parentkey === '@url') {
-					var newarray = [];
-					for (url in localArray) {
-						if (localArray[url].indexOf("http") !== 0) {
-							newarray.push(localArray[url]);
-						}
-					}
-					localArray = newarray;
-				}
-*/
+                                if (parentkey === '@url') {
+                                       var newarray = [];
+                                       for (url in localArray) {
+                                               if (localArray[url].indexOf("http") !== 0) {
+                                                       newarray.push(localArray[url]);
+                                               }
+                                       }
+                                       localArray = newarray;
+                                }
 				element.attr(parentkey.substr(1),'"'+localArray.join('" "')+'"');
 			} else {
 				element.attr(parentkey.substr(1),localArray.join(","));
