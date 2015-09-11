@@ -1,0 +1,12 @@
+{
+  "name": "JSONLD",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "~4.9.0",
+    "mongodb": "^2.0.42"
+  },
+  "scripts": {
+    "start": "node app.js"
+  }
+}

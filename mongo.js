@@ -3,7 +3,7 @@ var fs = require('fs');
 // connect to mongo
 var MongoClient = require('mongodb').MongoClient, assert = require('assert');
 
-var url = 'mongodb://localhost:27017/testing_storeX3D';
+var url = 'mongodb://coderextreme.local:27017/testing_storeX3D';
 
 // our model
 MongoClient.connect(url, function(err, db) {

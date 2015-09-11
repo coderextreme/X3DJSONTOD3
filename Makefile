@@ -1,7 +1,11 @@
 JSON2D3_HOME=/Users/johncarlson/Source/X3DJSONTOD3
 JAVA_HOME=/usr
 
-all: clean java Sphere HelloWorld geo heart radial DolphinMorpher Script pp3 fish dist java
+all: 
+	-rm json.log
+	( for i in `find X3dForWebAuthors/. -name '*.x3d'`; do \
+		cat $$i | sed 's/ < / \&lt; /g' | ${JAVA_HOME}/bin/java -cp ${JSON2D3_HOME}:${JSON2D3_HOME}/gson-2.3.1.jar ParseXML  | node compress.js >> json.log; \
+	 done)
 
 clean:
 	-rm ExtrusionHeart.js ExtrusionHeart.json *.radial geoComponent.js geoComponent.json radial.js radial.json *.class *.2.html *.3.html *.2.x3d *.2.json HelloWorld.json HelloWorld.js DolphinMorpher.js DolphinMorpher.json output/DolphinMorpher.2.x3d output/DolphinMorpher.3.html output/DolphinMorpher.radial output/HelloWorld.2.x3d output/HelloWorld.3.html output/HelloWorld.radial
