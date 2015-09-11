@@ -20,21 +20,30 @@ MongoClient.connect(url, function(err, db) {
 	}
 	var insertDocuments = function(db, callback) {
 		var collection = db.collection('documents');
-		try {
-			var file = "HelloWorld.json";
+		function parseFile(file) {
 			fs.readFile(file, function(err, data) {
 				if (err) {
 					throw err;
 				}
-				var hello = JSON.parse(data);
-				collection.insert(hello, function(err, result) {
-					assert.equal(err, null);
-					console.log('inserted');
-					callback(result);
-				});
+				try {
+					var x3d = JSON.parse(data);
+					collection.insert(x3d, function(err, result) {
+						assert.equal(err, null);
+						console.log('inserted');
+						callback(result);
+					});
+					console.log(file, 'succeeded');
+				} catch (e) {
+					console.log(file, 'failed', e);
+				}
 			});
-		} catch (e) {
-			console.log(file, 'failed', e);
+		}
+		for (i in process.argv) {
+			if (i < 2) {
+				continue;
+			}
+			var file = process.argv[i];
+			parseFile(file);
 		}
 	};
 	var findDocuments = function(db, callback) {
