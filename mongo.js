@@ -1,9 +1,10 @@
 var fs = require('fs');
 var assert = require('assert');
+var config = require('./config');
 
 module.exports.removeDocuments = function(db, callback) {
 	  // Get the documents collection
-	  var collection = db.collection('testing_storeX3D');
+	  var collection = db.collection(config.collection);
 	  // Insert some documents
 	  collection.remove({}, function(err, result) {
 		assert.equal(null, err);
@@ -11,31 +12,82 @@ module.exports.removeDocuments = function(db, callback) {
 	  });
 	};
 module.exports.findDocuments = function(db, callback) {
-		var collection = db.collection('testing_storeX3D');
+		var collection = db.collection(config.collection);
 		collection.find({}).toArray(function(err, docs) {
 			assert.equal(null, err);
 			callback(docs);
 		});
 	};
-module.exports.insertDocuments = function(db, callback) {
-		var collection = db.collection('testing_storeX3D');
 
-		var finder = require('findit')('/Users/johncarlson/Downloads/www.web3d.org/www.web3d.org/x3d/content/examples');
-		finder.on('file', function(file) {
+function convertChildren(object, file) {
+	var key;
+	for (key in object) {
+		if (typeof object[key] === 'object') {
+				convertUrls(object[key], key, file);
+		}
+	}
+}
+
+function convertUrls(object, parentkey, file) {
+	var key;
+	for (key in object) {
+		if (typeof object[key] === 'object') {
+			if (key.substr(0,1) === '@') {
+				convertUrls(object[key], key, file);
+			} else if (key.substr(0,1) === '-') {
+				convertChildren(object[key], file);
+			} else {
+				convertUrls(object[key], key, file);
+			}
+		} else if (typeof object[key] === 'string') {
+			if (parentkey === '@url') {
+			      if (object[key].indexOf("http") < 0) {
+				       object[key] = '/'+file.substring(0, file.lastIndexOf('/')+1)+object[key];
+			       }
+			       console.log(object[key]);
+			}
+		}
+	}
+}
+
+module.exports.insertDocuments = function(db, callback) {
+		var collection = db.collection(config.collection);
+
+		var finder = require('findit')(config.folder);
+		finder.on('error', function(err) {
+			if (err.code === 'EACCES') {
+				console.log('Cannot access', err.path)
+			}
+		});
+		finder.on('file', function(file, err) {
 			if (file.indexOf('.json') < 0) {
 				return; // if not .json, continue
+			}
+			if (file.indexOf('Chapter02') < 0 && file.indexOf('KelpTank.json') < 0 && file.indexOf('KelpForestMain.json') < 0) {
+				return;
 			}
 			var data = fs.readFileSync(file);
 			try {
 				var x3d = JSON.parse(data);
-				x3d.file = file;
-				collection.insert(x3d, function(err, result) {
-					// assert.equal(null, err);
-					callback(result);
-				});
-				// console.log(file, 'succeeded');
+				if (typeof x3d[0].X3D.head == 'undefined') {
+					x3d[0].X3D.head = [];
+				}
 			} catch (e) {
 				// console.log(file, 'failed', e);
+				return;
 			}
+			var ex = file.indexOf("examples");
+			if (ex >= 0) {
+				file = file.substring(ex);
+			}
+			x3d[0].X3D.head.unshift({ "meta": { "@content": file, "@name":"file" } });
+			convertUrls(x3d, "", file);
+			data = JSON.stringify(x3d);
+			var x3d = JSON.parse(data);
+			collection.insert(x3d, function(err, result) {
+				// assert.equal(null, err);
+				callback(result);
+			});
+			// console.log(file, 'succeeded');
 		});
 	};

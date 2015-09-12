@@ -11,7 +11,7 @@ MongoClient.connect(url, function(err, db) {
 	console.error('mongo is open');
 	mongo.removeDocuments(db, function(result) {
 		mongo.insertDocuments(db, function(result) {
-			console.log(result);
+			// console.log(result);
 			// db.close();
 		});
 	});

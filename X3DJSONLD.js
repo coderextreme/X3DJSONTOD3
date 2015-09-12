@@ -1,5 +1,7 @@
 "use strict";
 
+// 'http://www.web3d.org/specifications/x3d-namespace'
+
 // Load X3D JSON into web page
 
 function ConvertChildren(object, indent, parentkey, element) {
@@ -41,18 +43,10 @@ function ConvertToX3DOM(object, indent, parentkey, element) {
 			} else if (key.substr(0,1) === '-') {
 				ConvertChildren(object[key], indent, key, element);
 			} else {
-				if (key.toLowerCase().indexOf("scene") >= 0 || key.toLowerCase()  === "x3d") {
-					var selectkey = key;
-					if (selectkey.indexOf("x3d:") == 0) {
-						selectkey = selectkey.substr(4);
-					}
-					ConvertToX3DOM(object[key], indent, key, document.querySelector(selectkey));
-				} else {
-					var createKey = key;
-					var child = document.createElement(createKey);
-					ConvertToX3DOM(object[key], indent, key, child);
-					element.appendChild(child);
-				}
+				var createKey = key;
+				var child = document.createElement(createKey);
+				ConvertToX3DOM(object[key], indent, key, child);
+				element.appendChild(child);
 			}
 		} else if (typeof object[key] === 'number') {
 			element.setAttribute(key.substr(1),object[key]);
@@ -70,18 +64,19 @@ function ConvertToX3DOM(object, indent, parentkey, element) {
 		if (parentkey.substr(0,1) === '@') {
 			if (arrayOfStrings) {
 				arrayOfStrings = false;
-/*
                                 if (parentkey === '@url') {
 				       var url;
-                                       var newarray = [];
                                        for (url in localArray) {
-                                               if (localArray[url].indexOf("http") === 0) {
-                                                       newarray.push(localArray[url]);
+/*
+                                              if (localArray[url].indexOf("..") === 0) {
+                                                       localArray[url] = '/'+localArray[url].substring(3);
+					       } else if (localArray[url].indexOf("http://") < 0) {
+                                                       localArray[url] = '/'+localArray[url];
                                                }
-                                       }
-                                       localArray = newarray;
-                                }
 */
+					       // console.log(localArray[url]);
+                                       }
+                                }
 				element.setAttribute(parentkey.substr(1),'"'+localArray.join('" "')+'"');
 			} else {
 				element.setAttribute(parentkey.substr(1),localArray.join(" "));
@@ -93,9 +88,13 @@ function ConvertToX3DOM(object, indent, parentkey, element) {
 }
 
 function loadX3DJS(selector, json) {
-	console.log(json);
 	var element = document.querySelector(selector);
-	ConvertToX3DOM(json, "", "", element);
+	if (element === null) {
+		console.log("selector found nothing in document", selector);
+	} else {
+		ConvertToX3DOM(json, "", "", element);
+		x3dom.reload();
+	}
 }
 
 function loadX3DJSON(selector, url) {
