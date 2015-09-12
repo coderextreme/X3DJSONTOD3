@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "express": "~4.9.0",
+    "findit": "^2.0.0",
     "mongodb": "^2.0.42"
   },
   "scripts": {
