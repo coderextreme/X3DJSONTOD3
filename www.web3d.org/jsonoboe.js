@@ -10,8 +10,8 @@ process.stdin.on('data', function(buf) { content += buf.toString(); });
 process.stdin.on('end', function() {
 	oboe.on('node:*', function(node,path, ancestors) {
 	  console.log('node:', node);
-	  //console.log('path:', path);
-	  //console.log('ancestors:', ancestors);
+	  console.log('path:', path);
+	  console.log('ancestors:', ancestors);
 	});
 	rs.push(content);
 	rs.push(null);
