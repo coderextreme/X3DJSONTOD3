@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<style>
+
+.axis .domain {
+  display: none;
+}
+
+span.tooltip {	
+    position: absolute;			
+    text-align: center;			
+    padding: 2px;				
+    font: 12px sans-serif;		
+    background: lightsteelblue;	
+    border: 0px;		
+    border-radius: 8px;			
+    pointer-events: none;			
+}
+</style>
+<h1>Creators of JSON scenes in X3D Resources examples</h1>
+<svg width="1000" height="500"></svg>
+<div></div>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script>
+
+var svg = d3.select("svg"),
+    margin = {top: 20, right: 20, bottom: 30, left: 40},
+    width = +svg.attr("width") - margin.left - margin.right,
+    height = +svg.attr("height") - margin.top - margin.bottom,
+    g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var x = d3.scaleBand()
+    .rangeRound([0, width - 60])
+    .paddingInner(0.05)
+    .align(0.1);
+
+var y = d3.scaleLinear()
+    .rangeRound([height, 0]);
+
+var z = d3.scaleSequential(d3.interpolateRainbow);
+
+d3.csv("data.csv", function(d, i, columns) {
+  for (i = 1, t = 0; i < columns.length; ++i) t += d[columns[i]] = +d[columns[i]];
+  d.total = t;
+  return d;
+}, function(error, data) {
+  if (error) throw error;
+
+  var keys = data.columns.slice(1);
+  var authorLookup = [];
+  var keysNum = [];
+  for (var k in keys) {
+	  authorLookup[keys[k]] = k;
+	  keysNum[k] = k;
+  }
+
+  data.sort(function(a, b) { return a.year - b.year; });
+  x.domain(data.map(function(d) { return d.year; }));
+  y.domain([0, d3.max(data, function(d) { return d.total; })]);
+  z.domain([0, keysNum.length-1]);
+
+  var span = d3.select("body").append("span")	
+    .attr("class", "tooltip")				
+    .style("opacity", 0);
+
+  g.append("g")
+    .selectAll("g")
+    .data(d3.stack().keys(keys)(data))
+    .enter().append("g")
+      .attr("fill", function(d) { return z(authorLookup[d.key]); })
+        .on("mouseover", function(d) {		
+            span.transition()		
+                .duration(200)		
+                .style("opacity", .9);		
+            span	.html(d.key)	
+                .style("left", (d3.event.pageX) + "px")		
+                .style("top", (d3.event.pageY - 28) + "px");	
+            })					
+        .on("mouseout", function(d) {		
+            span.transition()		
+                .duration(500)		
+                .style("opacity", 0);	
+        })
+    .selectAll("rect")
+    .data(function(d) { return d; })
+    .enter().append("rect")
+      .attr("x", function(d) { return x(d.data.year); })
+      .attr("y", function(d) { return y(d[1]); })
+      .attr("height", function(d) { return y(d[0]) - y(d[1]); })
+      .attr("width", x.bandwidth());
+
+  g.append("g")
+      .attr("class", "axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x));
+
+  g.append("g")
+      .attr("class", "axis")
+      .call(d3.axisLeft(y).ticks(null, "s"))
+    .append("text")
+      .attr("x", 2)
+      .attr("y", y(y.ticks().pop()) + 0.5)
+      .attr("dy", "0.32em")
+      .attr("fill", "#000")
+      .attr("font-weight", "bold")
+      .attr("text-anchor", "start")
+      .text("Scenegraphs");
+
+  var size = 2;
+  var legend = d3.select("div");
+  legend.selectAll("div")
+    .data(keys.slice())
+    .enter().append("span")
+      .style("width", size)
+      .style("height", size)
+      .style("color", function(d) { return z(authorLookup[d]); })
+      .text(function(d) { return d+"; "; });
+});
+
+</script>
