@@ -3,11 +3,11 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "express": "~4.9.0",
+    "d3": "*",
+    "express": "^4.17.1",
     "findit": "^2.0.0",
-    "mongodb": "^2.0.42",
     "glob": "*",
-    "d3": "*"
+    "mongodb": ">=3.1.13"
   },
   "scripts": {
     "start": "node app.js"
