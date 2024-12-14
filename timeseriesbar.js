@@ -1,5 +1,6 @@
-var fs = require('fs');
-var d3 = require('d3');
+import * as fs from 'fs';
+import * as d3 from 'd3';
+
 var authors = {};
 var authcount = 1;
 var years = [];
@@ -14,6 +15,9 @@ var doc = data.toString().split(/\r?\n/);
 for (var row = 1; row < doc.length-1; row++) {
 	var d = doc[row].split(/\t/);
 	var dt = parseTime(d[0]);
+	if (dt === null) {
+		console.error(d);
+	}
 	var author = d[1];
 	var year = formatTime(dt)-1968;
 	if (typeof years[year] === 'undefined') {
