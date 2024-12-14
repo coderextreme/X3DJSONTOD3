@@ -22,7 +22,7 @@ files.forEach(function(file) {
 	// console.log(file);
 	var created = "";
 	var modified = "";
-	//var translated = "";
+	var translated = "";
 	var creators = "";
 	try {
 		var json = JSON.parse(fs.readFileSync(file));
@@ -34,11 +34,9 @@ files.forEach(function(file) {
 			if (name === 'created') {
 				created = content;
 			}
-			/*
 			if (name === 'translated') {
 				translated = content;
 			}
-			*/
 			if (name === 'modified') {
 				modified = content;
 			}
@@ -52,12 +50,10 @@ files.forEach(function(file) {
 		creators = "Unknown";
 	}
 	if (typeof created === 'undefined' || created === "") {
-		/*
 		if (typeof translated !== 'undefined' && translated !== "") {
 			console.error("Empty 'created' date", created, 'for', file, "setting to 'translated'", translated);
 			created = translated;
 		} else
-		*/
 		if (typeof modified !== 'undefined' && modified !== "") {
 			console.error("Empty 'created' date", created, 'for', file, "setting to 'modified'", modified);
 			created = modified;
