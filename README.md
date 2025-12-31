@@ -25,8 +25,8 @@ Requirements:
 
 `run.bat` should do both of the above, but there are no guarantees
 
-
 Additional files
+```
 	* ExtrusionHeart.x3d X3D example file
 	* geoComponent.x3d X3D extracted from x3dom_geoComponent.html
 	* geofiles web files for x3dom_geoComponent2.html
@@ -43,5 +43,6 @@ Additional files
 	* JSON2X3D.js converts X3D JSON format to X3D XML
 	* JWCSON2X3D.js converts coderextreme's JSON format to X3DXML
 	* X3DJSONLD.js loads X3D JSON into a web browser
+```
 
 There are missing images from the component example
