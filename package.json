@@ -7,7 +7,7 @@
     "d3": "*",
     "express": "*",
     "findit": "*",
-    "glob": "*",
+    "glob": "^13.0.0",
     "mongodb": "*"
   },
   "scripts": {
