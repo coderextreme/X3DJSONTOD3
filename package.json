@@ -5,9 +5,9 @@
   "type": "module",
   "dependencies": {
     "d3": "*",
-    "express": "*",
+    "express": "5.2.1",
     "findit": "*",
-    "glob": "13.0.0",
+    "glob": "13.0.6",
     "mongodb": "*"
   },
   "scripts": {
