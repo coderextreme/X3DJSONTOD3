@@ -5,9 +5,10 @@
   "type": "module",
   "dependencies": {
     "d3": "*",
+    "@prantlf/jsonlint": "17.0.1",
     "express": "5.2.1",
     "findit": "*",
-    "glob": "13.0.6",
+    "glob": "14.0.3",
     "mongodb": "*"
   },
   "scripts": {

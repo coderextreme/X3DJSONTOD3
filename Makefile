@@ -1,10 +1,10 @@
-JSON2D3_HOME=/Users/johncarlson/Source/X3DJSONTOD3
+JSON2D3_HOME=/home/yottzumm/X3DJSONTOD3
 JAVA_HOME=/usr
 
-all: 
+all: java
 	-rm json.log
-	( for i in `find X3dForWebAuthors/. -name '*.x3d'`; do \
-		cat $$i | sed 's/ < / \&lt; /g' | ${JAVA_HOME}/bin/java -cp ${JSON2D3_HOME}:${JSON2D3_HOME}/gson-2.3.1.jar ParseXML  | node compress.js >> json.log; \
+	( for i in `find ~/www.web3d.org/x3d/content/examples/X3dForWebAuthors/. -name '*.x3d'`; do \
+		cat $$i | sed 's/ < / \&lt; /g' | ${JAVA_HOME}/bin/java -cp ${JSON2D3_HOME}:${JSON2D3_HOME}/gson-2.3.1.jar ParseXML | node_modules/.bin/jsonlint >> json.log; \
 	 done)
 
 clean:
